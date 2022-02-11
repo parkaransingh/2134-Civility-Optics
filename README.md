@@ -1,4 +1,4 @@
 # 2134-Civility-Optics
 
-Madhura Gangal \n
+Madhura Gangal
 Menelik Gebremariam
