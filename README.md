@@ -1,12 +1,8 @@
 # 2134-Civility-Optics
 
-<<<<<<< HEAD
-
-
-
-=======
-Parkaranjot Singh
 Madhura Gangal
+Keith Tan
+Parkaranjot Singh
 Menelik Gebremariam
-
->>>>>>> 1d70a68f01fc3abc9945b251f8483fef187b07e0
+Alexander Goebel
+William Silva
