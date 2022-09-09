@@ -13,7 +13,8 @@ struct VenueDetails: View {
   @ObservedObject var model: VenueDetailsModel
   
   var body: some View {
-    ScrollView {
+    
+    VStack {
       HStack {
         VStack(alignment: .leading) {
           Text(model.description)
@@ -24,6 +25,7 @@ struct VenueDetails: View {
       }
       .padding()
       HStack(spacing: 4) {
+    
         if let rating = model.rating {
           Text("Rating:")
             .foregroundColor(.stone)
@@ -32,8 +34,9 @@ struct VenueDetails: View {
             .bold()
           Text("of 5")
             .foregroundColor(.stone)
+        
         } else {
-          Text("Be the first to leave a rating.")
+            Text("Be the first to leave a rating.")
             .foregroundColor(.pale)
             .multilineTextAlignment(.leading)
         }
@@ -67,20 +70,21 @@ struct VenueDetails: View {
           Text("Be the first to leave a comment.")
             .foregroundColor(.pale)
         }
-        
-        ForEach(model.results, id: \.self) { result in
-          HStack {
-            VStack {
-              Text(result.review)
-                .multilineTextAlignment(.leading)
-            }
-            Spacer()
-          }
-          .padding()
-          .background(
-            RoundedRectangle(cornerRadius: 20)
+          ScrollView {
+              ForEach(model.results, id: \.self) { result in
+                  HStack {
+                      VStack {
+                          Text(result.review)
+                              .multilineTextAlignment(.leading)
+                      }
+                      Spacer()
+                  }
+                  .padding()
+                  .background(
+                    RoundedRectangle(cornerRadius: 20)
               .foregroundColor(.init(white: 0.95)))
-        }
+              }
+          }
       }
       .padding()
     }
