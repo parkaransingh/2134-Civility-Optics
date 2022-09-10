@@ -25,6 +25,8 @@ struct VenueDetails: View {
       .padding()
       HStack(spacing: 4) {
         if let rating = model.rating {
+        VStack(alignment: .leading) {
+            HStack{
           Text("Rating:")
             .foregroundColor(.stone)
           Text(String(format: "%.1f", rating))
@@ -32,6 +34,9 @@ struct VenueDetails: View {
             .bold()
           Text("of 5")
             .foregroundColor(.stone)
+            }
+            FistsView(rate:rating)
+        }
         } else {
           Text("Be the first to leave a rating.")
             .foregroundColor(.pale)
