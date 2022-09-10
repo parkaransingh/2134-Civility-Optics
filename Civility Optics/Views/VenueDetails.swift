@@ -71,8 +71,14 @@ struct VenueDetails: View {
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
-              Text(result.review)
+                Text(result.review)
                 .multilineTextAlignment(.leading)
+                
+                Text(String(result.value))
+                
+            
+            Text((result.tags).joined(separator: " "))
+               
             }
             Spacer()
           }
