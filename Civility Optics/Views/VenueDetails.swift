@@ -23,6 +23,24 @@ struct VenueDetails: View {
         Spacer()
       }
       .padding()
+        
+    
+        // Future code for sideways scrolling
+//        VStack {
+//            Divider()
+//            ScrollView(.horizontal) {
+//                HStack(spacing: 10) {
+//                    ForEach(0..<10) { index in
+//                    CircleView(label: "\(index)")
+//                            }
+//                        }.padding()
+//                    }.frame(height: 100)
+//                    Divider()
+//                    Spacer()
+//                }
+      HStack(spacing:4){
+          ImageWindow()
+      }
       HStack(spacing: 4) {
         if let rating = model.rating {
           Text("Rating:")
