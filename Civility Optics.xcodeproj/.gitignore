@@ -1,0 +1,4 @@
+.DS_STORE
+*xcworkspace/xcuserdata/*
+*xcodeproj/xcuserdata/*
+*xcuserdatad/xcdebugger/*
