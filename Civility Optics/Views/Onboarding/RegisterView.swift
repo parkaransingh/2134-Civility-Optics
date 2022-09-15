@@ -15,6 +15,7 @@ struct RegisterView: View {
   @State var password: String = ""
   @State var confirm: String = ""
   @State var didCreateAccount: Bool?
+  @State var name: String = ""
   
   var body: some View {
     VStack(alignment: .leading, spacing: 20) {
@@ -30,7 +31,7 @@ struct RegisterView: View {
           RoundedRectangle(cornerRadius: 12)
             .foregroundColor(.pale)
           HStack {
-            TextField("Search", text: $email)
+            TextField("email", text: $email)
               .foregroundColor(.stone)
               .keyboardType(.emailAddress)
             Spacer()
@@ -48,7 +49,7 @@ struct RegisterView: View {
           RoundedRectangle(cornerRadius: 12)
             .foregroundColor(.pale)
           HStack {
-            SecureField("Search", text: $password)
+            SecureField("password", text: $password)
               .foregroundColor(.stone)
             Spacer()
           }
@@ -56,7 +57,6 @@ struct RegisterView: View {
         }
         .frame(height: 40)
       }
-      
         VStack(alignment: .leading, spacing: 4) {
           Text("Confirm Password")
             .foregroundColor(.pale)
@@ -65,7 +65,7 @@ struct RegisterView: View {
             RoundedRectangle(cornerRadius: 12)
               .foregroundColor(.pale)
             HStack {
-              SecureField("Search", text: $confirm)
+              SecureField("confirm", text: $confirm)
                 .foregroundColor(.stone)
               Spacer()
             }
@@ -76,6 +76,49 @@ struct RegisterView: View {
                 Text("Passwords do not match").foregroundColor(.red)
             }
         }
+        VStack(alignment: .leading, spacing: 4) {
+          Text("Name")
+            .foregroundColor(.pale)
+            .fontWeight(.semibold)
+          ZStack {
+            RoundedRectangle(cornerRadius: 12)
+              .foregroundColor(.pale)
+            HStack {
+                TextField("Name", text: $name)
+                .foregroundColor(.stone)
+                .keyboardType(.emailAddress)
+              Spacer()
+            }
+            .padding(.horizontal, 14)
+          }
+          .frame(height: 40)
+        }
+        
+        VStack(alignment: .leading, spacing: 4) {
+          Text("Race")
+            .foregroundColor(.pale)
+            .fontWeight(.semibold)
+          ZStack {
+            RoundedRectangle(cornerRadius: 12)
+              .foregroundColor(.pale)
+            HStack {
+                Menu("Choose Race") {
+                    Text("Asian")
+                    Text("Black")
+                    Text("White")
+                    Text("Native American")
+                    Text("Native Hawaiian or other Pacific Islander")
+                }
+                .foregroundColor(.stone)
+                .keyboardType(.emailAddress)
+              Spacer()
+            }
+            .padding(.horizontal, 14)
+          }
+          .frame(height: 40)
+        }
+    
+        
       Spacer()
         
       NavigationLink(tag: true, selection: $didCreateAccount) {
@@ -97,7 +140,7 @@ struct RegisterView: View {
       }
 
       Button { 
-        model.register(email: email, password: password)
+          model.register(email: email, password: password, name: name)
       } label: {
         RoundedRectangle(cornerRadius: 20)
           .foregroundColor(.velvet)
@@ -108,4 +151,10 @@ struct RegisterView: View {
     .padding()
     .navigationTitle("Create an Account")
   }
+}
+
+struct RegisterView_Previews: PreviewProvider {
+    static var previews: some View {
+        RegisterView()
+    }
 }

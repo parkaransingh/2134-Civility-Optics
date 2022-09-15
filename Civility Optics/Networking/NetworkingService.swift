@@ -209,7 +209,8 @@ extension NetworkingService {
   
   static func register(
     email: String, 
-    password: String, 
+    password: String,
+    name: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "users")!)
@@ -218,6 +219,7 @@ extension NetworkingService {
     let body: [String: String] = [
       "email": email,
       "password": password,
+      "name": name,
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
