@@ -10,11 +10,11 @@ local businesses, and host a database for logging user’s ratings.
 
 
 ## Team members
-Madhura Gangal
-Keith Tan
-Parkaranjot Singh
-Menelik Gebremariam
-Alexander Goebel
+Madhura Gangal,
+Keith Tan,
+Parkaranjot Singh,
+Menelik Gebremariam,
+Alexander Goebel,
 William Silva
 
 
