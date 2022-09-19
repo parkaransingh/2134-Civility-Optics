@@ -211,6 +211,7 @@ extension NetworkingService {
     email: String, 
     password: String,
     name: String,
+    race: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "users")!)
@@ -220,6 +221,7 @@ extension NetworkingService {
       "email": email,
       "password": password,
       "name": name,
+      "race": race
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
@@ -278,6 +280,41 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+
+//    static func logout(
+//      email: String,
+//      password: String,
+//      completion: @escaping (AuthResult?) -> ()
+//    ) {
+//      var req = URLRequest(url: URL(string: baseURL + "users/me/logout")!)
+//      req.httpMethod = "POST"
+//      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//      let body: [String: String] = [
+//        "email": email,
+//        "password": password,
+//      ]
+//
+//      req.httpBody = try? JSONEncoder().encode(body)
+//
+//      URLSession.shared.dataTask(with: req) { data, res, error in
+//        guard
+//          let data = data,
+//          let res = res as? HTTPURLResponse,
+//          error == nil
+//        else {
+//          print("Error", error ?? "Unknown error")
+//          return
+//        }
+//
+//        guard checkStatus(res) else {
+//          return
+//        }
+//
+//        printResponse(data)
+//
+//        completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+//      }.resume()
+//    }
 }
 
 struct AutocompleteResult: Codable {

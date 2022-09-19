@@ -9,8 +9,8 @@ import SwiftUI
 
 class RegisterViewModel: ObservableObject {
   
-    func register(email: String, password: String, name: String) {
-      NetworkingService.register(email: email, password: password, name: name) { result in
+    func register(email: String, password: String, name: String, race: String) {
+        NetworkingService.register(email: email, password: password, name: name, race: race) { result in
       AuthService.current.token = result?.token
       DispatchQueue.main.async {
         self.success = true

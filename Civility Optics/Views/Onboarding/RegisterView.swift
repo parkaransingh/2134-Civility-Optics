@@ -16,6 +16,7 @@ struct RegisterView: View {
   @State var confirm: String = ""
   @State var didCreateAccount: Bool?
   @State var name: String = ""
+  @State var race: String = ""
   
   var body: some View {
     VStack(alignment: .leading, spacing: 20) {
@@ -95,22 +96,21 @@ struct RegisterView: View {
         }
         
         VStack(alignment: .leading, spacing: 4) {
-          Text("Race")
+            Text("Race")
             .foregroundColor(.pale)
             .fontWeight(.semibold)
           ZStack {
             RoundedRectangle(cornerRadius: 12)
               .foregroundColor(.pale)
             HStack {
-                Menu("Choose Race") {
-                    Text("Asian")
-                    Text("Black")
-                    Text("White")
-                    Text("Native American")
-                    Text("Native Hawaiian or other Pacific Islander")
+                Menu(race == "" ? "Choose Race" : race) {
+                    Button("Asian", action: { chooseRace(myRace: "Asian") })
+                    Button("Black", action: { chooseRace(myRace: "Black") })
+                    Button("White", action: { chooseRace(myRace: "White") })
+                    Button("Native American", action: { chooseRace(myRace: "Native American") })
+                    Button("Native Hawaiian or other Pacific Islander", action: { chooseRace(myRace: "Native Hawaiian or other Pacific Islander") })
                 }
                 .foregroundColor(.stone)
-                .keyboardType(.emailAddress)
               Spacer()
             }
             .padding(.horizontal, 14)
@@ -140,7 +140,7 @@ struct RegisterView: View {
       }
 
       Button { 
-          model.register(email: email, password: password, name: name)
+          model.register(email: email, password: password, name: name, race: race)
       } label: {
         RoundedRectangle(cornerRadius: 20)
           .foregroundColor(.velvet)
@@ -151,6 +151,11 @@ struct RegisterView: View {
     .padding()
     .navigationTitle("Create an Account")
   }
+    
+    func chooseRace(myRace: String) {
+        race = myRace
+        
+    }
 }
 
 struct RegisterView_Previews: PreviewProvider {
