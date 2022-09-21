@@ -212,6 +212,8 @@ extension NetworkingService {
     password: String,
     name: String,
     race: String,
+    disability: String,
+    gender: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "users")!)
@@ -221,7 +223,9 @@ extension NetworkingService {
       "email": email,
       "password": password,
       "name": name,
-      "race": race
+      "race": race,
+      "disability": disability,
+      "gender": gender
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
