@@ -35,8 +35,9 @@ extension NetworkingService {
     date: Date, 
     tag: Array<String>, 
     comment: String? = nil, 
-    id: String
+    id: String,
   ) {
+    var user = getCurrentUser() // TODO: I don't think this is how to call getCurrentUser
     var req = URLRequest(url:NetworkingService.url)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -45,7 +46,9 @@ extension NetworkingService {
       "value": AnyEncodable(rating),
       "tags": AnyEncodable(tag),
       "review": AnyEncodable(comment),
-      "place_id": AnyEncodable(id)
+      "place_id": AnyEncodable(id),
+      "user_email": AnyEncodable(user.email),
+      "user_name": AnyEncodable(user.name)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -276,6 +279,33 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+
+  static func getCurrentUser( 
+    completion: @escaping (UserProfile?) -> ()
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "users/me")!)
+    req.httpMethod = "GET"
+    //req.setValue("application/json", forHTTPHeaderField: "Authorization") //add "token"?
+    
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+      
+      printResponse(data)
+      
+      completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+    }.resume()
+  }
 }
 
 struct AutocompleteResult: Codable {
@@ -293,6 +323,20 @@ struct Review: Codable, Hashable {
   var value: Double
   var tags: [String] 
   var date_visited: String
+  var user_name: String
+  var user_email: String
+}
+
+typealias UserProfile = [User]
+struct User: Codable, Hashable {
+  var email: String
+  var isVerified: Double
+  var password: [String] 
+  var role: String
+  var name: String
+  var gender: String
+  var race: String
+  var disability: String
 }
 
 struct AnyEncodable: Encodable {
