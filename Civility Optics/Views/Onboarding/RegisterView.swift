@@ -191,11 +191,11 @@ struct RegisterView: View {
               SearchView(model: .init()).tabItem {
                         Label("Search Places", systemImage: "magnifyingglass")
                               }
-              profile(email: self.$email, password: self.$password).tabItem {
+              profile(model: UserProfileModel(email: self.email)).tabItem {
                   Label("Profile", systemImage: "person.circle.fill")
                         }
     
-                      }
+                    }
           
       } label: { 
         EmptyView()
