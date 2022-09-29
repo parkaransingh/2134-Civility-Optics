@@ -8,40 +8,72 @@
 import SwiftUI
 struct profile: View {
     @Environment(\.presentationMode) var presentationMode
-    //@ObservedObject var model = LoginViewModel()
-//    @Binding var email: String
+
     @ObservedObject var model : UserProfileModel
-    // @ObservedObject var model = UserProfileModel(email: email)
     var body: some View {
-        //results.navigationBarTitle("Profile")
-//        let _ = print(model)
         VStack{
             HStack{
                 
-            Text("Welcome: ").foregroundColor(.blue)
-    
-              Text(self.model.post.user.name ?? "None").foregroundColor(.blue)
-////                    .fontWeight(.semibold)
+                Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
+              Text(self.model.post.user.name ?? "None").foregroundColor(.blueDianne)
+                    .font(.largeTitle).fontWeight(.bold)
                 
-            
             }
+            VStack{
+                HStack{
+                    Text("User Profile").foregroundColor(.stone)
+                        .fontWeight(.bold)
+                        .italic()
+                        .font(.title2)
+                    Spacer()
+                        
+                }.padding()
             
+            List {
             HStack{
-            Text("LoginID: ").foregroundColor(.blue)
+                Text("Email:").foregroundColor(.stone)
                     .fontWeight(.semibold)
+            
                 Text(self.model.post.user.email ?? "None").foregroundColor(.blue)
-//                Text().foregroundColor(.blue)
-//                    .fontWeight(.semibold)
-                
             
             }
             HStack{
-                Text("Number of Reviews:").foregroundColor(.blue)
+                Text("Number of Reviews:").foregroundColor(.stone)
                     .fontWeight(.semibold)
-                Text("0").foregroundColor(.pale)
-                    .fontWeight(.semibold)
-                    
+            
+                Text( "0").foregroundColor(.blue)
             }
+                HStack{
+                    Text("Gender:").foregroundColor(.stone)
+                        .fontWeight(.semibold)
+                
+                    Text(self.model.post.user.gender ?? "Not Specified").foregroundColor(.blue)
+                }
+                HStack{
+                    Text("Race:").foregroundColor(.stone)
+                        .fontWeight(.semibold)
+                
+                    Text(self.model.post.user.race ?? "Not Specified").foregroundColor(.blue)
+                }
+                HStack{
+                    Text("Disabilities:").foregroundColor(.stone)
+                        .fontWeight(.semibold)
+                
+                    Text(self.model.post.user.disability ?? "Not Specified").foregroundColor(.blue)
+                }
+            }.frame(minHeight: 280)
+            }
+            List {
+                HStack{
+                    Spacer()
+                Button{
+                }label: {
+                    Text("Password Settings")
+                        .bold()
+                }.foregroundColor(.velvet)
+                    Spacer()
+                }
+            }.scrollEnabled(false)
         Spacer()
         NavigationLink {
               WelcomeView()
@@ -58,10 +90,20 @@ struct profile: View {
             print(model.email)
       }
     }
-//    struct profile_Previews: PreviewProvider {
-//
-//            static var previews: some View {
-//                profile(email: .constant("hello"), model: UserProfileModel(email:"k@k.com"))
-//        }
-//    }
+    struct profile_Previews: PreviewProvider {
+
+            static var previews: some View {
+                profile(model: UserProfileModel(email:""))
+        }
+    }
+}
+extension View {
+  @ViewBuilder func scrollEnabled(_ enabled: Bool) -> some View {
+    if enabled {
+      self
+    } else {
+      simultaneousGesture(DragGesture(minimumDistance: 0),
+                          including: .all)
+    }
+  }
 }
