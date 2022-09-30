@@ -37,7 +37,7 @@ struct WelcomeView: View {
       .frame(height: 60)
       
       NavigationLink { 
-        LoginView()
+          LoginView()
       } label: {
         HStack {
           Spacer()

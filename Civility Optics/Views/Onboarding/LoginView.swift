@@ -9,11 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
   
-  @ObservedObject var model = LoginViewModel()
-  
+ 
   @State var email: String = ""
   @State var password: String = ""
   @State var didLogin: Bool?
+@ObservedObject var model = LoginViewModel()
   
   var body: some View {
     VStack(alignment: .leading, spacing: 20) {
@@ -62,7 +62,7 @@ struct LoginView: View {
                     SearchView(model: .init()).tabItem {
                               Label("Search Places", systemImage: "magnifyingglass")
                                     }
-                    profile(email: self.$email, password: self.$password).tabItem {
+                    profile(model: UserProfileModel(email:self.email)).tabItem {
                         Label("Profile", systemImage: "person.circle.fill")
                     }
           
@@ -87,64 +87,4 @@ struct LoginView: View {
     .padding()
     .navigationTitle("Login")
   }
-}
-
-import SwiftUI
-struct profile: View {
-
-    @Environment(\.presentationMode) var presentationMode
-    @Binding var email: String
-    @Binding var password: String
-    var body: some View {
-        //results.navigationBarTitle("Profile")
-        VStack{
-            HStack{
-            Text("LoginID: ").foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                Text(email).foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                
-            
-            }
-            HStack{
-                Text("Password: ").foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                Text(password).foregroundColor(.blue)
-                    .fontWeight(.semibold)
-            }
-            HStack{
-                Text("Number of Reviews:").foregroundColor(.blue)
-                    .fontWeight(.semibold)
-                Text("0").foregroundColor(.pale)
-                    .fontWeight(.semibold)
-                    
-                
-            }
-        Spacer()
-//        Button(action: {
-//            presentationMode.wrappedValue.dismiss()
-//        }){
-//            Text("logout")
-//                .fontWeight(.semibold)
-//                .padding()
-//                        .background(RoundedRectangle(cornerRadius: 8).fill(Color.red))
-//
-//        }.frame(minWidth: 600, minHeight: 100)
-            NavigationLink {
-              WelcomeView()
-            } label: {
-              RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(.yellow)
-                .overlay(Text("Logout").foregroundColor(.white))
-            }
-            .frame(height: 60)
-    
-        }
-    }
-
-//var title: some View {
-//        NavigationView {
-//
-//        }.navigationBarTitle(Text("Profile"))
-//    }
 }
