@@ -8,15 +8,14 @@
 import SwiftUI
 
 class LoginViewModel: ObservableObject {
-  
-  func login(email: String, password: String) {
+    func login(email: String, password: String) {
     NetworkingService.login(email: email, password: password) { result in
       AuthService.current.token = result?.token
       DispatchQueue.main.async {
-        self.success = true
+          self.success = true
       }
     }
-  }
-  
-  @Published var success: Bool?
+    }
+
+@Published var success: Bool?
 }

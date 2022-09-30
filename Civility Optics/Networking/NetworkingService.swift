@@ -209,7 +209,11 @@ extension NetworkingService {
   
   static func register(
     email: String, 
-    password: String, 
+    password: String,
+    name: String,
+    race: String,
+    disability: String,
+    gender: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "users")!)
@@ -218,6 +222,10 @@ extension NetworkingService {
     let body: [String: String] = [
       "email": email,
       "password": password,
+      "name": name,
+      "race": race,
+      "disability": disability,
+      "gender": gender
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
@@ -276,6 +284,55 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+
+    static func getUserDetail(
+      email: String,
+      completion: @escaping (Post?) -> ()
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "users/me")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String : String] =  ["email": email]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+          printResponse(data)
+          
+          let decoder = JSONDecoder()
+          var post: Post? = nil
+          do {
+              post = try decoder.decode(Post.self, from: data)
+          }
+          catch {
+              print(error)
+          }
+          
+          completion(post)
+          
+////        let result = try? JSONDecoder().decode([UserResult].self, from: data)
+////          completion(result?.first?.name)
+//
+//          let result = try JSONDecoder().decode(Post.self, from: jsonData)
+//          catch {
+//              print(error)
+//          }
+//          completion(try? JSONDecoder().decode([UserResult].self, from: data))
+      }.resume()
+    }
+
+    
 }
 
 struct AutocompleteResult: Codable {
@@ -323,3 +380,40 @@ struct RatingResult: Codable, Hashable {
   var avg_rating: Double
   
 }
+
+struct UserDetail: Codable, Hashable {
+    var name: String
+}
+struct UserResult: Codable, Hashable {
+//    var id: String
+//    var email: String
+//  var isVerified: Bool
+  var name: String
+//    var gender: String
+//    var race: String
+//    var disability: String
+}
+
+struct Post: Codable {
+    var user: User
+}
+struct User: Codable, Identifiable {
+    var id: String?
+    var email: String?
+    var isVerified: Bool?
+    var name: String?
+    var gender: String?
+    var race: String?
+    var disability: String?
+}
+
+//struct User: Codable, Identifiable {
+//
+//        var id: String?
+//        var email: String?
+//       var isVerified: Bool?
+//       var name: String?
+//        var gender: String?
+//        var race: String?
+//        var disability: String?
+//}
