@@ -188,7 +188,7 @@ struct RegisterView: View {
       NavigationLink(tag: true, selection: $didCreateAccount) {
         //SearchView(model: .init())
           TabView {
-              SearchView(model: .init()).tabItem {
+              SearchView(model: .init(), email: self.email).tabItem {
                         Label("Search Places", systemImage: "magnifyingglass")
                               }
               profile(model: UserProfileModel(email: self.email)).tabItem {
@@ -229,8 +229,8 @@ struct RegisterView: View {
     }
 }
 
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
-    }
-}
+//struct RegisterView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RegisterView()
+//    }
+//}

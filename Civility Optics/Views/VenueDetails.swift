@@ -11,7 +11,7 @@ import SwiftUI
 struct VenueDetails: View {
   
   @ObservedObject var model: VenueDetailsModel
-  
+var email: String
   var body: some View {
     VStack {
       HStack {
@@ -47,8 +47,9 @@ struct VenueDetails: View {
       .padding()
       NavigationLink { 
         RateView(
+          usermodel : UserProfileModel(email:email),
           name: model.details?.name ?? model.description,
-          model: .init(placeID: model.placeID))
+          model: .init(placeID: model.placeID) )
       } label: { 
         RoundedRectangle(cornerRadius: 20)
           .foregroundColor(.velvet)

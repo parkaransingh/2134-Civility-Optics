@@ -11,9 +11,8 @@ import SwiftUI
 struct RateView: View {
   
   @Environment(\.presentationMode) var presentation
-  
+  @ObservedObject var usermodel : UserProfileModel
   var name: String
-  
   let model: RateViewModel
   
   @State var comment: String = ""
@@ -68,9 +67,9 @@ struct RateView: View {
         }
         
         if !comment.isEmpty {
-          NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID)
+            NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
         } else {
-          NetworkingService.submitRating(rating, date: date, tag: tags, id: model.placeID)
+            NetworkingService.submitRating(rating, date: date, tag: tags, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
         }
         
         presentation.wrappedValue.dismiss()
@@ -85,6 +84,10 @@ struct RateView: View {
       .accentColor(.velvet)
       .padding()
     }.navigationTitle("New Rating")
+          .onAppear {
+          usermodel.refreshModel()
+          print(usermodel.email)
+        }
   }
 }
 

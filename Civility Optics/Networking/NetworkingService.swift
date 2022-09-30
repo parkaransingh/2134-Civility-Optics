@@ -35,7 +35,9 @@ extension NetworkingService {
     date: Date, 
     tag: Array<String>, 
     comment: String? = nil, 
-    id: String
+    id: String,
+    name: String,
+    email: String
   ) {
     var req = URLRequest(url:NetworkingService.url)
     req.httpMethod = "POST"
@@ -45,7 +47,9 @@ extension NetworkingService {
       "value": AnyEncodable(rating),
       "tags": AnyEncodable(tag),
       "review": AnyEncodable(comment),
-      "place_id": AnyEncodable(id)
+      "place_id": AnyEncodable(id),
+      "user_email": AnyEncodable(email),
+      "user_name": AnyEncodable(name)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
