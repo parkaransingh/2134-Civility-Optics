@@ -12,8 +12,7 @@ class UserProfileModel: ObservableObject {
         email: String
     ) {
       self.email = email
-        self.post = Post(user: User())
-        
+      self.post = Post(user: User())
     }
     func refreshModel() {
         getUser(email:email)
@@ -29,9 +28,24 @@ class UserProfileModel: ObservableObject {
             }
         }
     }
+        NetworkingService.getReviewsUser(email: self.email) { results in
+          if let results = results {
+            DispatchQueue.main.async {
+              self.results = results
+            }
+          }
+        }
+        
     }
     
+    
+//    func getUserReviews() {
+//     print("started")
+//    }
+    
+    
     @Published var post:Post
+    @Published var results: ReviewsResult = []
 //    @Published var newuser : User
 }
 
