@@ -11,7 +11,7 @@ struct profile: View {
 
     @ObservedObject var model : UserProfileModel
     var body: some View {
-        VStack{
+        ScrollView{
             HStack{
                 
                 Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
@@ -63,6 +63,43 @@ struct profile: View {
                 }
             }.frame(minHeight: 280)
             }
+            
+            VStack{
+                ForEach(model.results, id: \.self) { result in
+                  HStack {
+                    VStack {
+                        HStack(spacing: 4) {
+                            Text("Rating: ")
+                                .bold()
+        //                        .multilineTextAlignment(.leading)
+                            Text(String(result.value)).foregroundColor(.gold)
+                            Spacer()
+                        }
+                        HStack(spacing: 4) {
+                        Text(result.review)
+                        .italic()
+                        }
+                        if !result.tags.isEmpty {
+                        HStack(spacing: 4){
+                        Text("Tags: ")
+                                .bold()
+                            HStack{
+                        Text((result.tags).joined(separator: ", "))
+                            .foregroundColor(.velvet)
+                            .padding(0)
+                            }.padding(0)
+                        Spacer()
+                        }
+                    }
+                    }
+                  }
+                  .padding()
+                  .background(
+                    RoundedRectangle(cornerRadius: 20)
+                      .foregroundColor(.init(white: 0.95)))
+                    }
+                }
+            
             List {
                 HStack{
                     Spacer()
