@@ -336,6 +336,42 @@ extension NetworkingService {
       }.resume()
     }
 
+    static func getReviewsUser(
+      email: String,
+      completion: @escaping (ReviewsResult?) -> ()
+    ) {
+        let emailcase = email.lowercased()
+        print("networking service: email  ", email)
+      var req = URLRequest(url: URL(string: baseURL + "getReviewsUser")!)
+        print("networking service: req ", req)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String: AnyEncodable] = [
+        "user_email": AnyEncodable(emailcase),
+        "limit": AnyEncodable(10),
+      ]
+      print("networking service: body ", body)
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+        
+        completion(try? JSONDecoder().decode(ReviewsResult.self, from: data))
+      }.resume()
+    }
     
 }
 
