@@ -54,20 +54,3 @@ struct SearchView: View {
     }
   }
 }
-
-
-//struct SearchView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    NavigationView {
-//      SearchView(model: SearchViewModel())
-//    }
-
-//      TabView {
-//                  SearchView(model: .init())
-//                      .tabItem {
-//                          Label("Search Places", systemImage: "list.dash")
-//                      }
-//              }
-//  }
-
-//}
