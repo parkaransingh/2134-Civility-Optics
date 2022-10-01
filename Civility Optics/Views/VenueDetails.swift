@@ -76,6 +76,7 @@ var email: String
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
+                Group{
                 HStack(spacing: 4) {
                     // Convert Date to String
                     // Create Date Formatter
@@ -83,6 +84,10 @@ var email: String
                     let date = result.date_visited[...endOfSentence]
                     Text(date)
                     Spacer()
+                }
+                HStack(spacing: 4) {
+                    Text(result.user_name)
+                }
                 }
                 HStack(spacing: 4) {
                     // Convert Date to String
