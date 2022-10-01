@@ -10,21 +10,13 @@ import SwiftUI
 struct SearchView: View {
   
   @ObservedObject var model: SearchViewModel
-  
+    var email: String
   @State var query: String = ""
   
   var body: some View {
     results.navigationBarTitle("Civility Optics")
           .navigationBarBackButtonHidden(true)
-      
-//      TabView {
-//          SearchView(model: .init()).tabItem {
-//                    Label("Search Places", systemImage: "list.dash")
-//                          }
-//
-//                  }
   }
-  
   var searchfield: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 12)
@@ -51,7 +43,7 @@ struct SearchView: View {
           if #available(iOS 14.0, *) {
             VenueDetails(model: .init(
               placeID: result.place_id,
-              description: result.description))
+              description: result.description), email: self.email)
           } else {
             Text(result.description)
           }
@@ -63,17 +55,19 @@ struct SearchView: View {
   }
 }
 
-struct SearchView_Previews: PreviewProvider {
-  static var previews: some View {
-    NavigationView {
-      SearchView(model: SearchViewModel())
-    }
+
+//struct SearchView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    NavigationView {
+//      SearchView(model: SearchViewModel())
+//    }
+
 //      TabView {
 //                  SearchView(model: .init())
 //                      .tabItem {
 //                          Label("Search Places", systemImage: "list.dash")
 //                      }
 //              }
-  }
+//  }
 
-}
+//}
