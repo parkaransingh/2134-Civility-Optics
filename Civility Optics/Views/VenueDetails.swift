@@ -6,7 +6,7 @@
 // additions by Parkarajot Singh on 04/9/22
 
 import SwiftUI
-
+import Foundation
 @available(iOS 14.0, *)
 struct VenueDetails: View {
   
@@ -77,6 +77,16 @@ var email: String
           HStack {
             VStack {
                 HStack(spacing: 4) {
+                    // Convert Date to String
+                    // Create Date Formatter
+                    let endOfSentence = result.date_visited.firstIndex(of: "T")!
+                    let date = result.date_visited[...endOfSentence]
+                    Text(date)
+                    Spacer()
+                }
+                HStack(spacing: 4) {
+                    // Convert Date to String
+                    // Create Date Formatter
                     Text("Rating: ")
                         .bold()
 //                        .multilineTextAlignment(.leading)
