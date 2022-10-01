@@ -11,7 +11,7 @@ struct profile: View {
 
     @ObservedObject var model : UserProfileModel
     var body: some View {
-        ScrollView{
+        VStack{
             HStack{
                 
                 Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
@@ -63,11 +63,21 @@ struct profile: View {
                 }
             }.frame(minHeight: 280)
             }
-            
-            VStack{
+            Text("Past Reviews:").fontWeight(.bold)
+            ScrollView{
                 ForEach(model.results, id: \.self) { result in
                   HStack {
                     VStack {
+                        HStack(spacing: 4) {
+                            HStack(spacing: 4) {
+                                // Convert Date to String
+                                // Create Date Formatter
+                                let endOfSentence = result.date_visited.firstIndex(of: "T")!
+                                let date = result.date_visited[...endOfSentence]
+                                Text(date)
+                                Spacer()
+                            }
+                        }
                         HStack(spacing: 4) {
                             Text("Rating: ")
                                 .bold()
@@ -98,7 +108,7 @@ struct profile: View {
                     RoundedRectangle(cornerRadius: 20)
                       .foregroundColor(.init(white: 0.95)))
                     }
-                }
+                }.frame(minHeight: 100)
             
             List {
                 HStack{
