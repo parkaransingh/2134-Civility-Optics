@@ -50,7 +50,11 @@ William Silva
 - Select a date visited for ratings
 - Add tags to ratings
 - Add a comment to ratings
+- View past ratings and reviews on profile page
+- View username of person who wrote a particular review, and the date it was written
+- Select business user or reviewer as the user type when creating an account
 
 ### Known Issues and Limitations
 - The login page is unintentionally accessible through the back navigation arrow. This may freeze the app and require a reboot.
 - Errors related to login or account creation (such as invalid password or failed attempts) are not shown to the user. Instead, only valid login and registration attempts change the page.
+- The date that a review was created automatically defaults to 
