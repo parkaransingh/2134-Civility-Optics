@@ -45,20 +45,26 @@ struct VenueDetails: View {
         Spacer()
       }
       .padding()
-      NavigationLink { 
-        RateView(
-          name: model.details?.name ?? model.description,
-          model: .init(placeID: model.placeID))
-      } label: { 
-        RoundedRectangle(cornerRadius: 20)
-          .foregroundColor(.velvet)
-          .overlay(
-            Text("Rate " + (model.details?.name ?? "this venue"))
-              .foregroundColor(.white))
-      }
-      .frame(height: 60)
-      .padding()
-      
+
+      // if statement starts here
+     // if profile != nil {
+      //if profile.getUser(self.email) == nil {
+        NavigationLink { 
+          RateView(
+            name: model.details?.name ?? model.description,
+            model: .init(placeID: model.placeID))
+        } label: { 
+          RoundedRectangle(cornerRadius: 20)
+            .foregroundColor(.velvet)
+            .overlay(
+              Text("Rate " + (model.details?.name ?? "this venue"))
+                .foregroundColor(.white))
+        }
+        .frame(height: 60)
+        .padding()
+      //}
+      //}
+      //ends here
       
       VStack(spacing: 12) {
         if !model.results.isEmpty {
@@ -76,6 +82,7 @@ struct VenueDetails: View {
           HStack {
             VStack {
                 HStack(spacing: 4) {
+                    Text(result.date_visited)
                     Text("Rating: ")
                         .bold()
 //                        .multilineTextAlignment(.leading)
