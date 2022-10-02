@@ -11,7 +11,7 @@ import SwiftUI
 struct VenueDetails: View {
   
   @ObservedObject var model: VenueDetailsModel
-  
+var email: String
   var body: some View {
     VStack {
       HStack {
@@ -45,26 +45,21 @@ struct VenueDetails: View {
         Spacer()
       }
       .padding()
-
-      // if statement starts here
-     // if profile != nil {
-      //if profile.getUser(self.email) == nil {
-        NavigationLink { 
-          RateView(
-            name: model.details?.name ?? model.description,
-            model: .init(placeID: model.placeID))
-        } label: { 
-          RoundedRectangle(cornerRadius: 20)
-            .foregroundColor(.velvet)
-            .overlay(
-              Text("Rate " + (model.details?.name ?? "this venue"))
-                .foregroundColor(.white))
-        }
-        .frame(height: 60)
-        .padding()
-      //}
-      //}
-      //ends here
+      NavigationLink { 
+        RateView(
+          usermodel : UserProfileModel(email:email),
+          name: model.details?.name ?? model.description,
+          model: .init(placeID: model.placeID) )
+      } label: { 
+        RoundedRectangle(cornerRadius: 20)
+          .foregroundColor(.velvet)
+          .overlay(
+            Text("Rate " + (model.details?.name ?? "this venue"))
+              .foregroundColor(.white))
+      }
+      .frame(height: 60)
+      .padding()
+      
       
       VStack(spacing: 12) {
         if !model.results.isEmpty {
