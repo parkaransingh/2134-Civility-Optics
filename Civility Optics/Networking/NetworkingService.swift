@@ -390,6 +390,7 @@ struct Review: Codable, Hashable {
   var value: Double
   var tags: [String] 
   var date_visited: String
+  var user_name: String
 }
 
 struct AnyEncodable: Encodable {
