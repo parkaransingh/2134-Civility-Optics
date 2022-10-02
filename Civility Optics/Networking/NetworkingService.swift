@@ -348,7 +348,7 @@ extension NetworkingService {
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
       let body: [String: AnyEncodable] = [
         "user_email": AnyEncodable(emailcase),
-        "limit": AnyEncodable(10),
+        "limit": AnyEncodable(100),
       ]
       print("networking service: body ", body)
       req.httpBody = try? JSONEncoder().encode(body)
