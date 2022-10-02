@@ -10,7 +10,6 @@ import SwiftUI
 struct RegisterView: View {
    
     @ObservedObject var model = RegisterViewModel()
-    @ObservedObject var model2 = BusinessRegisterViewModel()
     
     
     @State var email: String = ""
@@ -303,7 +302,7 @@ struct RegisterView: View {
                 NavigationLink(tag: true, selection: $didCreateAccount) {
                       //SearchView(model: .init())
                     TabView {
-                        SearchView(model: .init()).tabItem {
+                        SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
                         profile(model: UserProfileModel(email: self.email)).tabItem {
@@ -320,8 +319,8 @@ struct RegisterView: View {
                 Button {
                     if(ageInt >= 13 && self.accountType == "Reviewer") {
                         model.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender)
-                    } else if(ageInt >= 13 && self.accountType == "Business") {
-                        model2.bRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
+                    } else if(self.accountType == "Business") {
+                        model.businessRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
                     }
                 } label: {
                     RoundedRectangle(cornerRadius: 20)

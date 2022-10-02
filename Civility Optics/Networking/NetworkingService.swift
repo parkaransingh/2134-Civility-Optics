@@ -270,7 +270,7 @@ extension NetworkingService {
       "password": password,
       "business_key": business_key,
       "business_name": business_name,
-      "business_addr": business_addr
+      "business_address": business_addr
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
