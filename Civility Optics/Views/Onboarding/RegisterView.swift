@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct RegisterView: View {
-    
+   
     @ObservedObject var model = RegisterViewModel()
+    @ObservedObject var model2 = BusinessRegisterViewModel()
+    
     
     @State var email: String = ""
     @State var password: String = ""
@@ -23,6 +25,9 @@ struct RegisterView: View {
     @State private var age: DateComponents? = DateComponents()
     @State private var ageInt: Int = 0
     @State var accountType = ""
+    @State var business_name = ""
+    @State var business_key = ""
+    @State var business_addr = ""
     
     var body: some View {
         ScrollView() {
@@ -61,6 +66,13 @@ struct RegisterView: View {
                 )
             }
             }
+            
+
+       //     if self.accountType == "Reviewer" || self.accountType == "" {
+         //      model = RegisterViewModel()
+           // } else if self.accountType == "Business" {
+             //  model = BusinessRegisterViewModel()
+            //}
             
             VStack(spacing: 2) {
                 Text("")
@@ -120,23 +132,82 @@ struct RegisterView: View {
                 if confirm != password {
                     Text("Passwords do not match").foregroundColor(.red)
                 }
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Name")
-                        .foregroundColor(.pale)
-                        .fontWeight(.semibold)
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 12)
+                
+                if self.accountType == "Reviewer" || self.accountType == "" {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Name")
                             .foregroundColor(.pale)
-                        HStack {
-                            TextField("Name", text: $name)
-                                .foregroundColor(.stone)
-                                .keyboardType(.alphabet)
-                            Spacer()
+                            .fontWeight(.semibold)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.pale)
+                            HStack {
+                                TextField("Name", text: $name)
+                                    .foregroundColor(.stone)
+                                    .keyboardType(.alphabet)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 14)
                         }
-                        .padding(.horizontal, 14)
+                        .frame(height: 40)
                     }
-                    .frame(height: 40)
+                } else if self.accountType == "Business" {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Business Name")
+                            .foregroundColor(.pale)
+                            .fontWeight(.semibold)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.pale)
+                            HStack {
+                                TextField("Business Name", text: $business_name)
+                                    .foregroundColor(.stone)
+                                    .keyboardType(.alphabet)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 14)
+                        }
+                        .frame(height: 40)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Business Key")
+                            .foregroundColor(.pale)
+                            .fontWeight(.semibold)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.pale)
+                            HStack {
+                                TextField("Business Key", text: $business_key)
+                                    .foregroundColor(.stone)
+                                    .keyboardType(.alphabet)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 14)
+                        }
+                        .frame(height: 40)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Business Address")
+                            .foregroundColor(.pale)
+                            .fontWeight(.semibold)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.pale)
+                            HStack {
+                                TextField("Business Address", text: $business_addr)
+                                    .foregroundColor(.stone)
+                                    .keyboardType(.alphabet)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 14)
+                        }
+                        .frame(height: 40)
+                    }
                 }
+
+              if self.accountType == "Reviewer" || self.accountType == "" {
                 VStack {
                     
                     DatePicker("Birth date:", selection: $birthDate, displayedComponents: .date)
@@ -155,6 +226,10 @@ struct RegisterView: View {
                         }
                     }
                 }
+              }
+
+
+              if self.accountType == "Reviewer" || self.accountType == "" {
                 Group{
                     Text("*Optional: ")
                     VStack(alignment: .leading, spacing: 4) {
@@ -222,10 +297,11 @@ struct RegisterView: View {
                         .frame(height: 40)
                     }
                 }
+              }
                 Spacer()
                 
                 NavigationLink(tag: true, selection: $didCreateAccount) {
-                    //SearchView(model: .init())
+                      //SearchView(model: .init())
                     TabView {
                         SearchView(model: .init()).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
@@ -242,8 +318,10 @@ struct RegisterView: View {
                     didCreateAccount = newValue
                 }
                 Button {
-                    if(ageInt >= 13) {
+                    if(ageInt >= 13 && self.accountType == "Reviewer") {
                         model.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender)
+                    } else if(ageInt >= 13 && self.accountType == "Business") {
+                        model2.bRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
                     }
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
