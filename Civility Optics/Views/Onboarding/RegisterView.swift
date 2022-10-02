@@ -10,7 +10,6 @@ import SwiftUI
 struct RegisterView: View {
     
     @ObservedObject var model = RegisterViewModel()
-    @ObservableObject var businessModel = BusinessRegisterViewModel()
     
     @State var email: String = ""
     @State var password: String = ""
