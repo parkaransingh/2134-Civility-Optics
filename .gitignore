@@ -1,3 +1,6 @@
 .DS_Store
 *xcuserdata
+*xcshareddata
+*project.xcworkspace
+*project.pbxproj
 */xcshareddata
