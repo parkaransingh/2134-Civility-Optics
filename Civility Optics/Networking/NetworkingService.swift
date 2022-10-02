@@ -258,7 +258,7 @@ extension NetworkingService {
     business_addr: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
-    var req = URLRequest(url: URL(string: baseURL + "businesss")!)
+    var req = URLRequest(url: URL(string: baseURL + "businesses")!)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
