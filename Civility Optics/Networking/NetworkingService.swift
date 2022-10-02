@@ -262,7 +262,7 @@ extension NetworkingService {
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
-      "email": email,
+      "email": email.lowercased(),
       "password": password,
       "business_key": business_key,
       "business_name": business_name,
