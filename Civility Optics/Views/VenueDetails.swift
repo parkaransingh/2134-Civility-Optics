@@ -82,11 +82,13 @@ var email: String
                     // Create Date Formatter
                     let endOfSentence = result.date_visited.firstIndex(of: "T")!
                     let date = result.date_visited[...endOfSentence]
-                    Text(date)
+                    Text(date).font(.caption)
                     Spacer()
                 }
                 HStack(spacing: 4) {
-                    Text(result.user_name)
+                    let reviewer = "by " + result.user_name
+                    Text(reviewer).font(.caption)
+                    Spacer()
                 }
                 }
                 HStack(spacing: 4) {
