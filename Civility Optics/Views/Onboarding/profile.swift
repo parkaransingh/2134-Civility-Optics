@@ -28,7 +28,8 @@ struct profile: View {
                     Spacer()
                         
                 }.padding()
-            
+    ScrollView{
+        ScrollView {
             List {
             HStack{
                 Text("Email:").foregroundColor(.stone)
@@ -74,7 +75,7 @@ struct profile: View {
                                 // Create Date Formatter
                                 let endOfSentence = result.date_visited.firstIndex(of: "T")!
                                 let date = result.date_visited[...endOfSentence]
-                                Text(date)
+                                Text(date).font(.caption)
                                 Spacer()
                             }
                         }
@@ -102,7 +103,7 @@ struct profile: View {
                         }
                     }
                     }
-                  }
+                  }.frame(maxHeight: 50)
                   .padding()
                   .background(
                     RoundedRectangle(cornerRadius: 20)
@@ -110,17 +111,19 @@ struct profile: View {
                     }
                 }.frame(minHeight: 100)
             
-            List {
-                HStack{
-                    Spacer()
-                Button{
-                }label: {
-                    Text("Password Settings")
-                        .bold()
-                }.foregroundColor(.velvet)
-                    Spacer()
-                }
-            }.scrollEnabled(false)
+//            List {
+//                HStack{
+//                    Spacer()
+//                Button{
+//                }label: {
+//                    Text("Password Settings")
+//                        .bold()
+//                }.foregroundColor(.velvet)
+//                    Spacer()
+//                }
+//            }.scrollEnabled(false)
+            }
+            }
         Spacer()
         NavigationLink {
               WelcomeView()
@@ -129,7 +132,7 @@ struct profile: View {
                     .foregroundColor(.yellow)
                 .overlay(Text("Logout").foregroundColor(.white))
             }
-           .frame(height: 60)
+           .frame(height: 40)
 
        }
         .onAppear {
