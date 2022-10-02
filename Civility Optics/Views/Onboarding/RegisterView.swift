@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RegisterView: View {
    
-    @ObservedObject var user_register = RegisterViewModel()
-    @ObservedObject var business_register = BusinessRegisterViewModel()
+    @ObservedObject var model = RegisterViewModel()
+    @ObservedObject var model2 = BusinessRegisterViewModel()
     
     
     @State var email: String = ""
@@ -303,10 +303,10 @@ struct RegisterView: View {
                 NavigationLink(tag: true, selection: $didCreateAccount) {
                       //SearchView(model: .init())
                     TabView {
-                        SearchView(user_register: .init()).tabItem {
+                        SearchView(model: .init()).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
-                        profile(user_register: UserProfileModel(email: self.email)).tabItem {
+                        profile(model: UserProfileModel(email: self.email)).tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
                         
@@ -314,14 +314,14 @@ struct RegisterView: View {
                     
                 } label: {
                     EmptyView()
-                }.onChange(of: user_register.success) { newValue in
+                }.onChange(of: model.success) { newValue in
                     didCreateAccount = newValue
                 }
                 Button {
                     if(ageInt >= 13 && self.accountType == "Reviewer") {
-                        user_register.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender)
+                        model.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender)
                     } else if(ageInt >= 13 && self.accountType == "Business") {
-                        business_register.bRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
+                        model2.bRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
                     }
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
