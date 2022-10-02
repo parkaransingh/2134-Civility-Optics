@@ -28,8 +28,7 @@ struct profile: View {
                     Spacer()
                         
                 }.padding()
-    ScrollView{
-        ScrollView {
+            
             List {
             HStack{
                 Text("Email:").foregroundColor(.stone)
@@ -64,66 +63,17 @@ struct profile: View {
                 }
             }.frame(minHeight: 280)
             }
-            Text("Past Reviews:").fontWeight(.bold)
-            ScrollView{
-                ForEach(model.results, id: \.self) { result in
-                  HStack {
-                    VStack {
-                        HStack(spacing: 4) {
-                            HStack(spacing: 4) {
-                                // Convert Date to String
-                                // Create Date Formatter
-                                let endOfSentence = result.date_visited.firstIndex(of: "T")!
-                                let date = result.date_visited[...endOfSentence]
-                                Text(date).font(.caption)
-                                Spacer()
-                            }
-                        }
-                        HStack(spacing: 4) {
-                            Text("Rating: ")
-                                .bold()
-        //                        .multilineTextAlignment(.leading)
-                            Text(String(result.value)).foregroundColor(.gold)
-                            Spacer()
-                        }
-                        HStack(spacing: 4) {
-                        Text(result.review)
-                        .italic()
-                        }
-                        if !result.tags.isEmpty {
-                        HStack(spacing: 4){
-                        Text("Tags: ")
-                                .bold()
-                            HStack{
-                        Text((result.tags).joined(separator: ", "))
-                            .foregroundColor(.velvet)
-                            .padding(0)
-                            }.padding(0)
-                        Spacer()
-                        }
-                    }
-                    }
-                  }.frame(maxHeight: 50)
-                  .padding()
-                  .background(
-                    RoundedRectangle(cornerRadius: 20)
-                      .foregroundColor(.init(white: 0.95)))
-                    }
-                }.frame(minHeight: 100)
-            
-//            List {
-//                HStack{
-//                    Spacer()
-//                Button{
-//                }label: {
-//                    Text("Password Settings")
-//                        .bold()
-//                }.foregroundColor(.velvet)
-//                    Spacer()
-//                }
-//            }.scrollEnabled(false)
-            }
-            }
+            List {
+                HStack{
+                    Spacer()
+                Button{
+                }label: {
+                    Text("Password Settings")
+                        .bold()
+                }.foregroundColor(.velvet)
+                    Spacer()
+                }
+            }.scrollEnabled(false)
         Spacer()
         NavigationLink {
               WelcomeView()
@@ -132,7 +82,7 @@ struct profile: View {
                     .foregroundColor(.yellow)
                 .overlay(Text("Logout").foregroundColor(.white))
             }
-           .frame(height: 40)
+           .frame(height: 60)
 
        }
         .onAppear {
