@@ -21,6 +21,22 @@ William Silva
 
 # Civility Optics iOS Release Notes
 
+## v 1.2.0, build 3
+### Features
+- View past ratings and revuews on profile page
+- Personalize what information to provide, with the option to include race, gender, and disabilities
+- View username of the person who wrote a particular review
+- View the date that a particular review was written
+- Select between creating a reviewer account and a business account
+### Bug Fixes
+
+### Known Issues and Limitations:
+- Date that a review was written defaults to incorrect date
+- Authentication logic not working (currently disabled in the current build) 
+- Submitting only a rating for one submission causes future reviews to not show up
+- Currently able to select polar opposites for tags for a single review
+
+
 ## v 1.1.0, build 2 
 ### Features
   - Confirm password entry on registration page 
