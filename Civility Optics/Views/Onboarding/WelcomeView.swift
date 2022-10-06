@@ -37,6 +37,15 @@ struct WelcomeView: View {
       .frame(height: 60)
       
       NavigationLink { 
+        BusinessRegisterView()
+      } label: { 
+        RoundedRectangle(cornerRadius: 20)
+          .foregroundColor(.velvet)
+          .overlay(Text("Create Business Account").foregroundColor(.white))
+      }
+      .frame(height: 60)
+      
+      NavigationLink { 
           LoginView()
       } label: {
         HStack {
