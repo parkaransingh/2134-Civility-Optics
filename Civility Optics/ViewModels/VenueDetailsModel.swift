@@ -21,13 +21,13 @@ class VenueDetailsModel: ObservableObject {
   var description: String
   
   func refreshModel() {
-    getRating()
+    getValue()
     getDetails()
-    getReviews()
+    getRatings()
   }
   
-  private func getRating() {
-    NetworkingService.getRating(placeID: placeID) { rating in
+  private func getValue() {
+    NetworkingService.getValue(placeID: placeID) { rating in
       if let rating = rating {
         DispatchQueue.main.async {
           self.rating = rating
@@ -36,8 +36,8 @@ class VenueDetailsModel: ObservableObject {
     }
   }
   
-  private func getReviews() {
-    NetworkingService.getReviews(placeID: placeID) { results in
+  private func getRatings() {
+    NetworkingService.getRatings(placeID: placeID) { results in
       if let results = results {
         DispatchQueue.main.async {
           self.results = results
