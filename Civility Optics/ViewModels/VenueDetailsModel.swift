@@ -8,7 +8,9 @@
 import SwiftUI
 
 class VenueDetailsModel: ObservableObject {
-  
+  //Model to be used for a particular businesses' main page
+
+  //Grab the placeID and the description of the business
   init(
     placeID: String,
     description: String
@@ -25,9 +27,10 @@ class VenueDetailsModel: ObservableObject {
     getDetails()
     getReviews()
   }
-  
+  //Function to grab all the current ratings of a business, based on placeID
   private func getRating() {
     NetworkingService.getRating(placeID: placeID) { rating in
+    //Checks if there are any ratings
       if let rating = rating {
         DispatchQueue.main.async {
           self.rating = rating
@@ -35,9 +38,10 @@ class VenueDetailsModel: ObservableObject {
       }
     }
   }
-  
+  //Function to grab all current written reviews of a business, based on placeID
   private func getReviews() {
     NetworkingService.getReviews(placeID: placeID) { results in
+    //Checks if there are any reviews
       if let results = results {
         DispatchQueue.main.async {
           self.results = results
@@ -45,7 +49,7 @@ class VenueDetailsModel: ObservableObject {
       }
     }
   }
-  
+  //Function to grab details that describe the current business
   private func getDetails() {
     
     // Only fetch this once.
