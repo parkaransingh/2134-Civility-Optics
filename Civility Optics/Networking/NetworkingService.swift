@@ -253,6 +253,47 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+
+  static func businessRegister(
+    email: String, 
+    password: String,
+    business_key: String,
+    business_name: String,
+    business_addr: String,
+    completion: @escaping (AuthResult?) -> ()
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "businesses")!)
+    req.httpMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let body: [String: String] = [
+      "email": email.lowercased(),
+      "password": password,
+      "business_key": business_key,
+      "business_name": business_name,
+      "business_address": business_addr
+    ]
+    
+    req.httpBody = try? JSONEncoder().encode(body)
+    
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+      
+      printResponse(data)
+      
+      completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+    }.resume()
+  }
   
   static func login(
     email: String, 
@@ -348,7 +389,7 @@ extension NetworkingService {
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
       let body: [String: AnyEncodable] = [
         "user_email": AnyEncodable(emailcase),
-        "limit": AnyEncodable(10),
+        "limit": AnyEncodable(100),
       ]
       print("networking service: body ", body)
       req.httpBody = try? JSONEncoder().encode(body)
@@ -390,6 +431,7 @@ struct Review: Codable, Hashable {
   var value: Double
   var tags: [String] 
   var date_visited: String
+  var user_name: String
 }
 
 struct AnyEncodable: Encodable {
