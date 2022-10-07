@@ -35,7 +35,9 @@ extension NetworkingService {
     date: Date, 
     tag: Array<String>, 
     comment: String? = nil, 
-    id: String
+    id: String,
+    name: String,
+    email: String
   ) {
     var req = URLRequest(url:NetworkingService.url)
     req.httpMethod = "POST"
@@ -45,7 +47,9 @@ extension NetworkingService {
       "value": AnyEncodable(rating),
       "tags": AnyEncodable(tag),
       "review": AnyEncodable(comment),
-      "place_id": AnyEncodable(id)
+      "place_id": AnyEncodable(id),
+      "user_email": AnyEncodable(email),
+      "user_name": AnyEncodable(name)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -209,7 +213,11 @@ extension NetworkingService {
   
   static func register(
     email: String, 
-    password: String, 
+    password: String,
+    name: String,
+    race: String,
+    disability: String,
+    gender: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "users")!)
@@ -218,6 +226,51 @@ extension NetworkingService {
     let body: [String: String] = [
       "email": email,
       "password": password,
+      "name": name,
+      "race": race,
+      "disability": disability,
+      "gender": gender
+    ]
+    
+    req.httpBody = try? JSONEncoder().encode(body)
+    
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+      
+      printResponse(data)
+      
+      completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+    }.resume()
+  }
+
+  static func businessRegister(
+    email: String, 
+    password: String,
+    business_key: String,
+    business_name: String,
+    business_addr: String,
+    completion: @escaping (AuthResult?) -> ()
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "businesses")!)
+    req.httpMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let body: [String: String] = [
+      "email": email.lowercased(),
+      "password": password,
+      "business_key": business_key,
+      "business_name": business_name,
+      "business_address": business_addr
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
@@ -276,6 +329,91 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+
+    static func getUserDetail(
+      email: String,
+      completion: @escaping (Post?) -> ()
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "users/me")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String : String] =  ["email": email]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+          printResponse(data)
+          
+          let decoder = JSONDecoder()
+          var post: Post? = nil
+          do {
+              post = try decoder.decode(Post.self, from: data)
+          }
+          catch {
+              print(error)
+          }
+          
+          completion(post)
+          
+////        let result = try? JSONDecoder().decode([UserResult].self, from: data)
+////          completion(result?.first?.name)
+//
+//          let result = try JSONDecoder().decode(Post.self, from: jsonData)
+//          catch {
+//              print(error)
+//          }
+//          completion(try? JSONDecoder().decode([UserResult].self, from: data))
+      }.resume()
+    }
+
+    static func getReviewsUser(
+      email: String,
+      completion: @escaping (ReviewsResult?) -> ()
+    ) {
+        let emailcase = email.lowercased()
+        print("networking service: email  ", email)
+      var req = URLRequest(url: URL(string: baseURL + "getReviewsUser")!)
+        print("networking service: req ", req)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String: AnyEncodable] = [
+        "user_email": AnyEncodable(emailcase),
+        "limit": AnyEncodable(100),
+      ]
+      print("networking service: body ", body)
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+        
+        completion(try? JSONDecoder().decode(ReviewsResult.self, from: data))
+      }.resume()
+    }
+    
 }
 
 struct AutocompleteResult: Codable {
@@ -290,7 +428,10 @@ struct AutocompleteResult: Codable {
 typealias ReviewsResult = [Review]
 struct Review: Codable, Hashable {
   var review: String
+  var value: Double
+  var tags: [String] 
   var date_visited: String
+  var user_name: String
 }
 
 struct AnyEncodable: Encodable {
@@ -321,3 +462,40 @@ struct RatingResult: Codable, Hashable {
   var avg_rating: Double
   
 }
+
+struct UserDetail: Codable, Hashable {
+    var name: String
+}
+struct UserResult: Codable, Hashable {
+//    var id: String
+//    var email: String
+//  var isVerified: Bool
+  var name: String
+//    var gender: String
+//    var race: String
+//    var disability: String
+}
+
+struct Post: Codable {
+    var user: User
+}
+struct User: Codable, Identifiable {
+    var id: String?
+    var email: String?
+    var isVerified: Bool?
+    var name: String?
+    var gender: String?
+    var race: String?
+    var disability: String?
+}
+
+//struct User: Codable, Identifiable {
+//
+//        var id: String?
+//        var email: String?
+//       var isVerified: Bool?
+//       var name: String?
+//        var gender: String?
+//        var race: String?
+//        var disability: String?
+//}

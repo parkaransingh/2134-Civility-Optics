@@ -6,14 +6,14 @@
 // additions by Parkarajot Singh on 04/9/22
 
 import SwiftUI
-
+import Foundation
 @available(iOS 14.0, *)
 struct VenueDetails: View {
   
   @ObservedObject var model: VenueDetailsModel
-  
+var email: String
   var body: some View {
-    ScrollView {
+    VStack {
       HStack {
         VStack(alignment: .leading) {
           Text(model.description)
@@ -47,8 +47,9 @@ struct VenueDetails: View {
       .padding()
       NavigationLink { 
         RateView(
+          usermodel : UserProfileModel(email:email),
           name: model.details?.name ?? model.description,
-          model: .init(placeID: model.placeID))
+          model: .init(placeID: model.placeID) )
       } label: { 
         RoundedRectangle(cornerRadius: 20)
           .foregroundColor(.velvet)
@@ -61,7 +62,6 @@ struct VenueDetails: View {
       
       
       VStack(spacing: 12) {
-        
         if !model.results.isEmpty {
           HStack {
             Text("Comments")
@@ -72,12 +72,51 @@ struct VenueDetails: View {
           Text("Be the first to leave a comment.")
             .foregroundColor(.pale)
         }
-        
+    ScrollView{
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
-              Text(result.review)
-                .multilineTextAlignment(.leading)
+                Group{
+                HStack(spacing: 4) {
+                    // Convert Date to String
+                    // Create Date Formatter
+                    let endOfSentence = result.date_visited.firstIndex(of: "T")!
+                    let date = result.date_visited[...endOfSentence]
+                    Text(date).font(.caption)
+                    Spacer()
+                }
+                HStack(spacing: 4) {
+                    let reviewer = "by " + result.user_name
+                    Text(reviewer).font(.caption)
+                    Spacer()
+                }
+                }
+                HStack(spacing: 4) {
+                    // Convert Date to String
+                    // Create Date Formatter
+                    Text("Rating: ")
+                        .bold()
+//                        .multilineTextAlignment(.leading)
+                    Text(String(result.value)).foregroundColor(.gold)
+                    Spacer()
+                }
+                HStack(spacing: 4) {
+                Text(result.review)
+                .italic()
+                Spacer()
+                }
+                if !result.tags.isEmpty {
+                HStack(spacing: 4){
+                Text("Tags: ")
+                        .bold()
+                    HStack{
+                Text((result.tags).joined(separator: ", "))
+                    .foregroundColor(.velvet)
+                    .padding(0)
+                    }.padding(0)
+                Spacer()
+                }
+            }
             }
             Spacer()
           }
@@ -85,6 +124,7 @@ struct VenueDetails: View {
           .background(
             RoundedRectangle(cornerRadius: 20)
               .foregroundColor(.init(white: 0.95)))
+            }
         }
       }
       .padding()
