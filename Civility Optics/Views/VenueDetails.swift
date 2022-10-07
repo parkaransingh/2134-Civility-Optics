@@ -23,6 +23,7 @@ var email: String
         Spacer()
       }
       .padding()
+      //Displays 5-fist rating scheme for the business
       HStack(spacing: 4) {
         if let rating = model.rating {
         VStack(alignment: .leading) {
@@ -45,6 +46,7 @@ var email: String
         Spacer()
       }
       .padding()
+      //Button that allows a user to review a particular business
       NavigationLink { 
         RateView(
           usermodel : UserProfileModel(email:email),
@@ -72,6 +74,7 @@ var email: String
           Text("Be the first to leave a comment.")
             .foregroundColor(.pale)
         }
+        //View for the business's current reviews displayed
     ScrollView{
         ForEach(model.results, id: \.self) { result in
           HStack {
@@ -105,6 +108,7 @@ var email: String
                 .italic()
                 Spacer()
                 }
+              //Reviews also displays tags selected as well
                 if !result.tags.isEmpty {
                 HStack(spacing: 4){
                 Text("Tags: ")
