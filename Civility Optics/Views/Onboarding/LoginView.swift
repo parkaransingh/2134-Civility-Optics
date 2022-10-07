@@ -59,7 +59,7 @@ struct LoginView: View {
       Spacer()
       NavigationLink(tag: true, selection: $didLogin) {
                 TabView {
-                    SearchView(model: .init()).tabItem {
+                    SearchView(model: .init(), email:self.email).tabItem {
                               Label("Search Places", systemImage: "magnifyingglass")
                                     }
                     profile(model: UserProfileModel(email:self.email)).tabItem {
