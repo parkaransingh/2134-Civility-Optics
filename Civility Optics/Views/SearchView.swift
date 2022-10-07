@@ -16,7 +16,13 @@ struct SearchView: View {
   var body: some View {
     results.navigationBarTitle("Civility Optics")
           .navigationBarBackButtonHidden(true)
+
+      
   }
+  //Search bar for Google Places API to find a business
+
+  }
+
   var searchfield: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 12)
@@ -35,9 +41,11 @@ struct SearchView: View {
     }
   }
   
+  //Results from the search for a business
   var results: some View {
     ScrollView {
       searchfield
+      //Displays list of matching businesses to search input
       ForEach(model.results, id: \.self) { result in
         NavigationLink { 
           if #available(iOS 14.0, *) {
@@ -54,3 +62,14 @@ struct SearchView: View {
     }
   }
 }
+
+
+struct SearchView_Previews: PreviewProvider {
+  static var previews: some View {
+    NavigationView {
+      SearchView(model: SearchViewModel())
+    }
+  }
+
+}
+

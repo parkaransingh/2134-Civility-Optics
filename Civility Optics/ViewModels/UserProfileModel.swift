@@ -8,6 +8,9 @@
 import SwiftUI
 
 class UserProfileModel: ObservableObject {
+    //Model of what to show on a users profile page
+
+    //We want to show their email and post it
     init(
         email: String
     ) {
@@ -18,7 +21,7 @@ class UserProfileModel: ObservableObject {
         getUser(email:email)
     }
     var email: String
-    
+    //Function to grab currently logged-in user's email to post on their profile page
     func getUser(email: String) {
     NetworkingService.getUserDetail(email: email) { result in
         if let result = result {
