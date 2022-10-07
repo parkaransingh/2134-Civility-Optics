@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreLocation
-
+//URL to communicate with the MongoDB database
 enum NetworkingService {
   static let baseURL = "http://localhost:5001/"
   static let url = URL(string: "http://localhost:5001/postRating")!
@@ -24,12 +24,12 @@ extension NetworkingService {
     }
     return true
   }
-  
+  //Print how MongoDB responds to communication to see if we were successful or not
   static func printResponse(_ data: Data) {
     let resStr = String(data: data, encoding: .utf8)
     print("responseString = \(String(describing: resStr))")
   }
-  
+  //Save new rating to the database connected via the business ID
   static func submitRating(
     _ rating: Int, 
     date: Date, 
@@ -70,7 +70,7 @@ extension NetworkingService {
       printResponse(data)
     }.resume()
   }
-  
+  //Gets rating for a business
   static func getRating(
     placeID: String,
     completion: @escaping (Double?) -> ()
@@ -83,7 +83,7 @@ extension NetworkingService {
       "place_id": placeID
     ]
     req.httpBody = try? JSONEncoder().encode(body)
-    
+    //Case if there are no reviews currently for a business
     URLSession.shared.dataTask(with: req) { data, res, error in
       guard
         let data = data,
