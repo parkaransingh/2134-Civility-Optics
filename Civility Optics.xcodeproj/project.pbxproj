@@ -13,6 +13,10 @@
 		80AC89FD28032A6E00F68D59 /* profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AC89FC28032A6E00F68D59 /* profile.swift */; };
 		80B5D18028CCF94300379E26 /* FistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B5D17F28CCF94300379E26 /* FistsView.swift */; };
 		80FFD31D28DF8D230090E5D8 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FFD31C28DF8D230090E5D8 /* UserProfileModel.swift */; };
+		E828FBEB28E920DA00B0CE8C /* BusinessRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E828FBEA28E920DA00B0CE8C /* BusinessRegisterViewModel.swift */; };
+		E8BC307128E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
+		E8BC307228E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
+		E8BC307328E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
 		F90AF9A42707E90600F5085F /* VenueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A32707E90600F5085F /* VenueItem.swift */; };
 		F90AF9A62707F1F700F5085F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A52707F1F700F5085F /* SearchView.swift */; };
 		F90AF9A82707F2C500F5085F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A72707F2C500F5085F /* SearchViewModel.swift */; };
@@ -68,6 +72,8 @@
 		80AC89FC28032A6E00F68D59 /* profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 		80B5D17F28CCF94300379E26 /* FistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FistsView.swift; sourceTree = "<group>"; };
 		80FFD31C28DF8D230090E5D8 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		E828FBEA28E920DA00B0CE8C /* BusinessRegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessRegisterViewModel.swift; sourceTree = "<group>"; };
+		E8BC307028E7651800F4F5F6 /* civility-optics-api */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "civility-optics-api"; path = "../civility-optics-api"; sourceTree = "<group>"; };
 		F90AF9A32707E90600F5085F /* VenueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueItem.swift; sourceTree = "<group>"; };
 		F90AF9A52707F1F700F5085F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F90AF9A72707F2C500F5085F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -145,6 +151,7 @@
 		F9279A582629E61B00E39A2C = {
 			isa = PBXGroup;
 			children = (
+				E8BC307028E7651800F4F5F6 /* civility-optics-api */,
 				808941E528D2A265003ECBCF /* .gitignore */,
 				F9279A632629E61B00E39A2C /* Civility Optics */,
 				F9279A7A2629E61C00E39A2C /* Civility OpticsTests */,
@@ -222,6 +229,7 @@
 		F9279A982629E70D00E39A2C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E828FBEA28E920DA00B0CE8C /* BusinessRegisterViewModel.swift */,
 				F9168C8C26E43DE20028E469 /* RateViewModel.swift */,
 				F9B06B88275C18D10095EEC9 /* VenueDetailsModel.swift */,
 				F9F69152270FAA1700974ABE /* VenueItemModel.swift */,
@@ -369,6 +377,7 @@
 			files = (
 				F9279A6C2629E61C00E39A2C /* Preview Assets.xcassets in Resources */,
 				808941E628D2A266003ECBCF /* .gitignore in Resources */,
+				E8BC307128E7651800F4F5F6 /* civility-optics-api in Resources */,
 				F9279A692629E61C00E39A2C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8BC307228E7651800F4F5F6 /* civility-optics-api in Resources */,
 				808941E728D2A266003ECBCF /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8BC307328E7651800F4F5F6 /* civility-optics-api in Resources */,
 				808941E828D2A266003ECBCF /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +412,7 @@
 				F9B06B8E275C1D230095EEC9 /* Color.swift in Sources */,
 				80FFD31D28DF8D230090E5D8 /* UserProfileModel.swift in Sources */,
 				F9F69153270FAA1700974ABE /* VenueItemModel.swift in Sources */,
+				E828FBEB28E920DA00B0CE8C /* BusinessRegisterViewModel.swift in Sources */,
 				F9279AA32629E98B00E39A2C /* CategoryLabel.swift in Sources */,
 				F9168C9226E440570028E469 /* NetworkingService.swift in Sources */,
 				F90AF9A42707E90600F5085F /* VenueItem.swift in Sources */,

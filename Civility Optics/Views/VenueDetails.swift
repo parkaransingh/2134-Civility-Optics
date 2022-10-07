@@ -6,12 +6,12 @@
 // additions by Parkarajot Singh on 04/9/22
 
 import SwiftUI
-
+import Foundation
 @available(iOS 14.0, *)
 struct VenueDetails: View {
   
   @ObservedObject var model: VenueDetailsModel
-  
+var email: String
   var body: some View {
     VStack {
       HStack {
@@ -47,8 +47,9 @@ struct VenueDetails: View {
       .padding()
       NavigationLink { 
         RateView(
+          usermodel : UserProfileModel(email:email),
           name: model.details?.name ?? model.description,
-          model: .init(placeID: model.placeID))
+          model: .init(placeID: model.placeID) )
       } label: { 
         RoundedRectangle(cornerRadius: 20)
           .foregroundColor(.velvet)
@@ -75,7 +76,24 @@ struct VenueDetails: View {
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
+                Group{
                 HStack(spacing: 4) {
+                    // Convert Date to String
+                    // Create Date Formatter
+                    let endOfSentence = result.date_visited.firstIndex(of: "T")!
+                    let date = result.date_visited[...endOfSentence]
+                    Text(date).font(.caption)
+                    Spacer()
+                }
+                HStack(spacing: 4) {
+                    let reviewer = "by " + result.user_name
+                    Text(reviewer).font(.caption)
+                    Spacer()
+                }
+                }
+                HStack(spacing: 4) {
+                    // Convert Date to String
+                    // Create Date Formatter
                     Text("Rating: ")
                         .bold()
 //                        .multilineTextAlignment(.leading)

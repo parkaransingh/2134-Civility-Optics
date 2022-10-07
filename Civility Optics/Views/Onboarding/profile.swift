@@ -87,15 +87,15 @@ struct profile: View {
        }
         .onAppear {
         model.refreshModel()
-            print(model.email)
+        print(model.email)
       }
     }
-    struct profile_Previews: PreviewProvider {
-
-            static var previews: some View {
-                profile(model: UserProfileModel(email:""))
-        }
-    }
+//    struct profile_Previews: PreviewProvider {
+//
+//            static var previews: some View {
+//                profile(model: UserProfileModel(email:""))
+//        }
+//    }
 }
 extension View {
   @ViewBuilder func scrollEnabled(_ enabled: Bool) -> some View {
