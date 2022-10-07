@@ -10,7 +10,7 @@ import CoreLocation
 
 enum NetworkingService {
   static let baseURL = "http://localhost:5001/"
-  static let url = URL(string: "http://localhost:5001/ratings/postRating")!
+  static let url = URL(string: "http://localhost:5001/postRating")!
 }
 
 extension NetworkingService {
@@ -71,12 +71,12 @@ extension NetworkingService {
     }.resume()
   }
   
-  static func getValue(
+  static func getRating(
     placeID: String,
     completion: @escaping (Double?) -> ()
   ) {
     
-    var req = URLRequest(url: URL(string: baseURL + "ratings/getValue")!)
+    var req = URLRequest(url: URL(string: baseURL + "getRating")!)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
@@ -177,11 +177,11 @@ extension NetworkingService {
     }.resume()
   }
   
-  static func getRatings(
+  static func getReviews(
     placeID: String, 
     completion: @escaping (ReviewsResult?) -> ()
   ) {
-    var req = URLRequest(url: URL(string: baseURL + "ratings/getRatings")!)
+    var req = URLRequest(url: URL(string: baseURL + "getReviews")!)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: AnyEncodable] = [
@@ -377,13 +377,13 @@ extension NetworkingService {
       }.resume()
     }
 
-    static func getRatingsByUser(
+    static func getReviewsUser(
       email: String,
       completion: @escaping (ReviewsResult?) -> ()
     ) {
         let emailcase = email.lowercased()
         print("networking service: email  ", email)
-      var req = URLRequest(url: URL(string: baseURL + "ratings/getRatingsByUser")!)
+      var req = URLRequest(url: URL(string: baseURL + "getReviewsUser")!)
         print("networking service: req ", req)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")

@@ -28,7 +28,7 @@ class UserProfileModel: ObservableObject {
             }
         }
     }
-        NetworkingService.getRatingsByUser(email: self.email) { results in
+        NetworkingService.getReviewsUser(email: self.email) { results in
           if let results = results {
             DispatchQueue.main.async {
               self.results = results
