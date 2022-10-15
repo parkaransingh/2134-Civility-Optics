@@ -39,7 +39,7 @@ extension NetworkingService {
     name: String,
     email: String
   ) {
-    var bearer = "Bearer " + AuthService.current.token
+    let bearer = "Bearer " + AuthService.current.token!
     var req = URLRequest(url:NetworkingService.url)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -334,9 +334,9 @@ extension NetworkingService {
 
     static func getUserDetail(
       email: String,
-      completion: @escaping (Post?) -> ()
+      completion: @escaping (User?) -> ()
     ) {
-      var bearer = "Bearer " + AuthService.current.token
+      let bearer = "Bearer " + AuthService.current.token!
       var req = URLRequest(url: URL(string: baseURL + "users/me")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -362,15 +362,15 @@ extension NetworkingService {
           printResponse(data)
           
           let decoder = JSONDecoder()
-          var post: Post? = nil
+          var user: User? = nil
           do {
-              post = try decoder.decode(Post.self, from: data)
+              user = try decoder.decode(User.self, from: data)
           }
           catch {
               print(error)
           }
           
-          completion(post)
+          completion(user)
           
 ////        let result = try? JSONDecoder().decode([UserResult].self, from: data)
 ////          completion(result?.first?.name)
@@ -421,7 +421,7 @@ extension NetworkingService {
     }
 
     static func userLogout() {
-      var bearer = "Bearer " + AuthService.current.token
+      let bearer = "Bearer " + AuthService.current.token!
       var req = URLRequest(url: URL(string: baseURL + "users/me/logout")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -449,7 +449,7 @@ extension NetworkingService {
     }
     
     static func userLogoutAllDevices() {
-      var bearer = "Bearer " + AuthService.current.token
+      let bearer = "Bearer " + AuthService.current.token!
       var req = URLRequest(url: URL(string: baseURL + "users/me/logoutall")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
