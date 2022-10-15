@@ -39,6 +39,7 @@ extension NetworkingService {
     name: String,
     email: String
   ) {
+    var bearer = "Bearer " + AuthService.current.token
     var req = URLRequest(url:NetworkingService.url)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -49,7 +50,8 @@ extension NetworkingService {
       "review": AnyEncodable(comment),
       "place_id": AnyEncodable(id),
       "user_email": AnyEncodable(email),
-      "user_name": AnyEncodable(name)
+      "user_name": AnyEncodable(name),
+      "Authorization": AnyEncodable(bearer)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -334,10 +336,14 @@ extension NetworkingService {
       email: String,
       completion: @escaping (Post?) -> ()
     ) {
+      var bearer = "Bearer " + AuthService.current.token
       var req = URLRequest(url: URL(string: baseURL + "users/me")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body: [String : String] =  ["email": email]
+      let body: [String : String] = [
+        "email": email,
+        "Authorization": bearer
+      ]
       req.httpBody = try? JSONEncoder().encode(body)
       
       URLSession.shared.dataTask(with: req) { data, res, error in
