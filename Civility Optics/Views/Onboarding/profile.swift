@@ -103,6 +103,34 @@ struct profile: View {
           }.frame(minHeight: 100)
         }
       }
+      HStack {
+        Button(action: {
+            NetworkingService.userLogout()
+          }, label: {
+            ZStack {
+              RoundedRectangle(cornerRadius: 10)
+              Text("Logout Current Device")
+                .fontWeight(.bold)
+                .accentColor(.white)
+            }.frame(height: 60)
+          }
+        )
+          .accentColor(.velvet)
+          .padding()
+        Button(action: {
+            NetworkingService.userLogoutAllDevices()
+          }, label: {
+            ZStack {
+              RoundedRectangle(cornerRadius: 10)
+              Text("Logout All Devices")
+                .fontWeight(.bold)
+                .accentColor(.white)
+            }.frame(height: 60)
+          }
+        )
+          .accentColor(.velvet)
+          .padding()
+      }
       Spacer()
       NavigationLink {
         WelcomeView()
