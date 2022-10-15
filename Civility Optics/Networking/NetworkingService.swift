@@ -419,7 +419,62 @@ extension NetworkingService {
         completion(try? JSONDecoder().decode(ReviewsResult.self, from: data))
       }.resume()
     }
+
+    static func userLogout() {
+      var bearer = "Bearer " + AuthService.current.token
+      var req = URLRequest(url: URL(string: baseURL + "users/me/logout")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+
+        printResponse(data)
+      }.resume()
+    }
     
+    static func userLogoutAllDevices() {
+      var bearer = "Bearer " + AuthService.current.token
+      var req = URLRequest(url: URL(string: baseURL + "users/me/logoutall")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+
+        printResponse(data)
+      }.resume()
+    }
 }
 
 struct AutocompleteResult: Codable {
