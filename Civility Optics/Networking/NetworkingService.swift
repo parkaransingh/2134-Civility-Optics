@@ -49,7 +49,8 @@ extension NetworkingService {
       "review": AnyEncodable(comment),
       "place_id": AnyEncodable(id),
       "user_email": AnyEncodable(email),
-      "user_name": AnyEncodable(name)
+      "user_name": AnyEncodable(name),
+      "flagged": AnyEncodable(false)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
