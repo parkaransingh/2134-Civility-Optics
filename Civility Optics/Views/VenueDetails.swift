@@ -90,7 +90,6 @@ var email: String
                     Text(reviewer).font(.caption)
                     Spacer()
                 }
-                }
                 HStack(spacing: 4) {
                     // Convert Date to String
                     // Create Date Formatter
@@ -99,6 +98,7 @@ var email: String
 //                        .multilineTextAlignment(.leading)
                     Text(String(result.value)).foregroundColor(.gold)
                     Spacer()
+                }
                 }
                 HStack(spacing: 4) {
                 Text(result.review)

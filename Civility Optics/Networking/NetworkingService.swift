@@ -428,6 +428,7 @@ struct AutocompleteResult: Codable {
 
 typealias ReviewsResult = [Review]
 struct Review: Codable, Hashable {
+  var _id : String
   var review: String
   var value: Double
   var tags: [String] 
