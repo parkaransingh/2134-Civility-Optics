@@ -109,6 +109,7 @@ var email: String
                 Spacer()
                 }
                 }
+
                 if !result.tags.isEmpty {
                 HStack(spacing: 4){
                 Text("Tags: ")
@@ -121,6 +122,12 @@ var email: String
                 Spacer()
                 }
             }
+                HStack(spacing: 4) {
+                    Button(String(result.helpful)) {
+                        print(result.helpful)
+                    }
+                Spacer()
+                }
             }
             Spacer()
           }

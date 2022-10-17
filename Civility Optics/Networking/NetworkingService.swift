@@ -50,7 +50,8 @@ extension NetworkingService {
       "place_id": AnyEncodable(id),
       "user_email": AnyEncodable(email),
       "user_name": AnyEncodable(name),
-      "flagged": AnyEncodable(false)
+      "flagged": AnyEncodable(false),
+      "helpful": AnyEncodable(0)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -468,6 +469,8 @@ struct Review: Codable, Hashable {
   var tags: [String] 
   var date_visited: String
   var user_name: String
+  var flagged: Bool
+  var helpful: Int
 }
 
 struct AnyEncodable: Encodable {
