@@ -10,7 +10,7 @@ import Foundation
 @available(iOS 14.0, *)
 struct VenueDetails: View {
   
-  @ObservedObject var model: VenueDetailsModel
+@ObservedObject var model: VenueDetailsModel
 var email: String
   var body: some View {
     VStack {
@@ -73,6 +73,8 @@ var email: String
             .foregroundColor(.pale)
         }
     ScrollView{
+        var b = true
+        let bools = Array(repeating: true, count: model.results.count)
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
@@ -124,7 +126,9 @@ var email: String
             }
                 HStack(spacing: 4) {
                     Button(String(result.helpful)) {
-                        print(result.helpful)
+                        NetworkingService.helpful(increment: b, id: result._id)
+                        model.refreshModel()
+                        b = !b
                     }
                 Spacer()
                 }
