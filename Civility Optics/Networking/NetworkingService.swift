@@ -51,7 +51,8 @@ extension NetworkingService {
       "user_email": AnyEncodable(email),
       "user_name": AnyEncodable(name),
       "flagged": AnyEncodable(false),
-      "helpful": AnyEncodable(0)
+      "helpful": AnyEncodable(0),
+      "helpfulUsers": AnyEncodable([""])
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -445,14 +446,14 @@ extension NetworkingService {
     
     
     static func helpful(
-        increment: Bool,
+        email: String,
         id: String
     ) {
       var req = URLRequest(url: URL(string: baseURL + "ratings/helpful")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         let body: [String : AnyEncodable] =  [
-            "increment": AnyEncodable(increment),
+            "email": AnyEncodable(email),
             "_id": AnyEncodable(id),
         ]
       req.httpBody = try? JSONEncoder().encode(body)

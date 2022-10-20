@@ -11,6 +11,7 @@ import Foundation
 struct VenueDetails: View {
   
 @ObservedObject var model: VenueDetailsModel
+@State private var didTap = Array(repeating: true, count: 4)
 var email: String
   var body: some View {
     VStack {
@@ -74,7 +75,6 @@ var email: String
         }
     ScrollView{
         var b = true
-        let bools = Array(repeating: true, count: model.results.count)
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
@@ -125,11 +125,14 @@ var email: String
                 }
             }
                 HStack(spacing: 4) {
-                    Button(String(result.helpful)) {
-                        NetworkingService.helpful(increment: b, id: result._id)
+                    var str =  "Helpful" + String(result.helpful)
+                    Button(str) {
+                        NetworkingService.helpful(email: email, id: result._id)
+                        b.toggle()
                         model.refreshModel()
-                        b = !b
                     }
+                    .background(b==true ? Color.blueDianne : Color.gold) // If you have
+                    .cornerRadius(10)
                 Spacer()
                 }
             }
