@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct RegisterView: View {
+struct BusinessUpdateView: View {
    
     @ObservedObject var model = RegisterViewModel()
     @ObservedObject var searchModel = SearchViewModel()
     
     
-    @State var email: String = ""
+    //@State var email: String = ""
     @State var password: String = ""
     @State var confirm: String = ""
     @State var didCreateAccount: Bool?
-    @State var name: String = ""
-    @State var race: String = ""
-    @State var gender: String = ""
-    @State var disability: String = ""
+    //@State var name: String = ""
+    //@State var race: String = ""
+    //@State var gender: String = ""
+    //@State var disability: String = ""
     @State private var birthDate = Date()
     @State private var age: DateComponents? = DateComponents()
     @State private var ageInt: Int = 0
