@@ -74,7 +74,6 @@ var email: String
             .foregroundColor(.pale)
         }
     ScrollView{
-        var b = true
         ForEach(model.results, id: \.self) { result in
           HStack {
             VStack {
@@ -125,14 +124,18 @@ var email: String
                 }
             }
                 HStack(spacing: 4) {
-                    var str =  "Helpful" + String(result.helpful)
-                    Button(str) {
-                        NetworkingService.helpful(email: email, id: result._id)
-                        b.toggle()
-                        model.refreshModel()
-                    }
-                    .background(b==true ? Color.blueDianne : Color.gold) // If you have
-                    .cornerRadius(10)
+                    var str =  " Helpful " + String(result.helpful) + " "
+                    Button(action: {
+                            NetworkingService.helpful(email: email, id: result._id)
+                            model.refreshModel()
+                            }) {
+                                Text(str)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.white)
+                            }
+                            .buttonStyle(CustomButtonStyle(isSelected: false))
+                            //.background(Color.gold) // If you have
+                            .cornerRadius(5)
                 Spacer()
                 }
             }
@@ -152,4 +155,14 @@ var email: String
       model.refreshModel()
     }
   }
+}
+
+
+struct CustomButtonStyle : ButtonStyle {
+    var isSelected: Bool
+ 
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.background(configuration.isPressed ? Color.blueDianne : Color.gold)
+            //Could also modify style based on isSelected
+    }
 }
