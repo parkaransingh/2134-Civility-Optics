@@ -74,6 +74,18 @@ struct profile: View {
                     Spacer()
                 }
             }.scrollEnabled(false)
+
+        Spacer()
+        NavigationLink {
+              //add link to update account detail page here - see button below which calls WelcomeView() its the same concept
+            } label: {
+              RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.red)
+                .overlay(Text("Update Account Details").foregroundColor(.white))
+            }
+           .frame(height: 60)
+
+
         Spacer()
         NavigationLink {
               WelcomeView()
