@@ -31,7 +31,7 @@ struct SearchView: View {
     .frame(height: 40)
     .padding(15)
     .onChange(of: query) { newValue in
-      model.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
+    model.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
     }
   }
   

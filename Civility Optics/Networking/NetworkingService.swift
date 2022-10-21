@@ -253,7 +253,7 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
-
+  /*
   static func update(
     email: String, 
     password: String,
@@ -296,7 +296,7 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
-
+*/
   static func businessRegister(
     email: String, 
     password: String,
@@ -346,7 +346,7 @@ extension NetworkingService {
     business_addr: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
-    var req = URLRequest(url: URL(string: baseURL + "businesses")!)
+    var req = URLRequest(url: URL(string: baseURL + "businesses/update")!)
     req.httpMethod = "PATCH"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
@@ -451,7 +451,7 @@ extension NetworkingService {
           completion(bpost)
       }.resume()
     }
-    
+
     static func getUserDetail(
       email: String,
       completion: @escaping (Post?) -> ()

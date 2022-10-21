@@ -11,6 +11,7 @@ struct profile: View {
     
     @ObservedObject var model : UserProfileModel
     @ObservedObject var bModel: BusinessProfileModel
+    
     var body: some View {
         if (self.accountType == "Reviewer" || self.accountType == "") {
         VStack{

@@ -11,6 +11,7 @@ struct BusinessUpdateView: View {
    
     @ObservedObject var model = RegisterViewModel()
     @ObservedObject var searchModel = SearchViewModel()
+    @ObservedObject var bModel = BusinessProfileModel()
     
     
     @State var email: String = ""
@@ -28,6 +29,7 @@ struct BusinessUpdateView: View {
     @State var business_name = ""
     @State var business_key = ""
     @State var business_addr = ""
+    @State var query = ""
     
     var body: some View {
         ScrollView() {
@@ -167,12 +169,13 @@ struct BusinessUpdateView: View {
                             searchModel.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
                         }
                         ScrollView {
-                            searchfield
-                            ForEach(model.results, id: \.self) { result in
+                            //searchfield
+                            ForEach(searchModel.results, id: \.self) { result in
                                 NavigationLink { 
                                 if #available(iOS 14.0, *) {
-                                    VenueDetails(model: .init(
+                                    VenueDetails(searchModel: .init(
                                     placeID: result.place_id,
+                                    //business_key = result.place_id,
                                     description: result.description), email: self.email)
                                 } else {
                                     Text(result.description)
@@ -182,7 +185,6 @@ struct BusinessUpdateView: View {
                                 }
                             }
                         }
-                        business_key = result.place_id
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Address")
