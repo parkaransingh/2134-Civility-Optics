@@ -39,6 +39,7 @@ extension NetworkingService {
     name: String,
     email: String
   ) {
+    let bearer = "Bearer " + AuthService.current.token!
     var req = URLRequest(url:NetworkingService.url)
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -50,6 +51,7 @@ extension NetworkingService {
       "place_id": AnyEncodable(id),
       "user_email": AnyEncodable(email),
       "user_name": AnyEncodable(name),
+      "Authorization": AnyEncodable(bearer),
       "flagged": AnyEncodable(false),
       "helpful": AnyEncodable(0),
       "helpfulUsers": AnyEncodable([""])
@@ -335,12 +337,16 @@ extension NetworkingService {
 
     static func getUserDetail(
       email: String,
-      completion: @escaping (Post?) -> ()
+      completion: @escaping (User?) -> ()
     ) {
+      let bearer = "Bearer " + AuthService.current.token!
       var req = URLRequest(url: URL(string: baseURL + "users/me")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        let body: [String : String] =  ["email": email]
+      let body: [String : String] = [
+        "email": email,
+        "Authorization": bearer
+      ]
       req.httpBody = try? JSONEncoder().encode(body)
       
       URLSession.shared.dataTask(with: req) { data, res, error in
@@ -359,15 +365,15 @@ extension NetworkingService {
           printResponse(data)
           
           let decoder = JSONDecoder()
-          var post: Post? = nil
+          var user: User? = nil
           do {
-              post = try decoder.decode(Post.self, from: data)
+              user = try decoder.decode(User.self, from: data)
           }
           catch {
               print(error)
           }
           
-          completion(post)
+          completion(user)
           
 ////        let result = try? JSONDecoder().decode([UserResult].self, from: data)
 ////          completion(result?.first?.name)
@@ -416,7 +422,64 @@ extension NetworkingService {
         completion(try? JSONDecoder().decode(ReviewsResult.self, from: data))
       }.resume()
     }
+
+    static func userLogout() {
+      let bearer = "Bearer " + AuthService.current.token!
+      var req = URLRequest(url: URL(string: baseURL + "users/me/logout")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+
+        printResponse(data)
+      }.resume()
+    }
     
+    static func userLogoutAllDevices() {
+      let bearer = "Bearer " + AuthService.current.token!
+      var req = URLRequest(url: URL(string: baseURL + "users/me/logoutall")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+      }.resume()
+    }
+
+
     static func report(
         id: String
     ) {
