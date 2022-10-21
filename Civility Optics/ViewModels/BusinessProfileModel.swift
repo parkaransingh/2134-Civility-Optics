@@ -12,7 +12,7 @@ class BusinessProfileModel: ObservableObject {
         email: String
     ) {
       self.email = email
-      self.post = Post(business: Business())
+      self.post = bPost(business: Business())
     }
     func refreshModel() {
         getBusiness(email:email)

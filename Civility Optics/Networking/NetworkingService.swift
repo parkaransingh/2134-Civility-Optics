@@ -598,8 +598,14 @@ struct UserResult: Codable, Hashable {
 
 struct Post: Codable {
     var user: User
+    //var business: Business
+}
+
+struct bPost: Codable {
+    //var user: User
     var business: Business
 }
+
 struct User: Codable, Identifiable {
     var id: String?
     var email: String?
