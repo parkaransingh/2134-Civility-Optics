@@ -12,7 +12,7 @@ struct RegisterView: View {
     @ObservedObject var model = RegisterViewModel()
     @ObservedObject var searchModel = SearchViewModel()
     
-    
+    @State var query: String = ""
     @State var email: String = ""
     @State var password: String = ""
     @State var confirm: String = ""
@@ -169,7 +169,7 @@ struct RegisterView: View {
                         }
                         .frame(height: 40)
                     }
-                    VStack(alignment: .leading, spacing: 4) {
+                    var searchfield: some View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
                             .foregroundColor(.pale)
@@ -186,11 +186,13 @@ struct RegisterView: View {
                             .onChange(of: query) { newValue in
                             searchModel.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
                         }
+                        var results: some View {
                         ScrollView {
                             searchfield
                             ForEach(model.results, id: \.self) { result in
                                 NavigationLink { 
                                 if #available(iOS 14.0, *) {
+                                    business_key = result.place_id
                                     VenueDetails(model: .init(
                                     placeID: result.place_id,
                                     description: result.description), email: self.email)
@@ -202,7 +204,8 @@ struct RegisterView: View {
                                 }
                             }
                         }
-                        business_key = result.place_id
+                    }
+                    
                     }
                     /**
                     VStack(alignment: .leading, spacing: 4) {

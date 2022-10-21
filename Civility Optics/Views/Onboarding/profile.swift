@@ -15,8 +15,7 @@ struct profile: View {
         if (self.accountType == "Reviewer" || self.accountType == "") {
         VStack{
             HStack{
-                
-                Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
+              Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
               Text(self.model.post.user.name ?? "None").foregroundColor(.blueDianne)
                     .font(.largeTitle).fontWeight(.bold)
                 
