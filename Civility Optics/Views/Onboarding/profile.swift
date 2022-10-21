@@ -8,9 +8,11 @@
 import SwiftUI
 struct profile: View {
     @Environment(\.presentationMode) var presentationMode
-
+    
     @ObservedObject var model : UserProfileModel
+    @ObservedObject var bModel: BusinessProfileModel
     var body: some View {
+        if (self.accountType == "Reviewer" || self.accountType == "") {
         VStack{
             HStack{
                 
@@ -101,6 +103,87 @@ struct profile: View {
         model.refreshModel()
         print(model.email)
       }
+    } else {
+        VStack{
+            HStack{
+                
+                Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
+              Text(self.bModel.post.business.business_name ?? "None").foregroundColor(.blueDianne)
+                    .font(.largeTitle).fontWeight(.bold)
+                
+            }
+            VStack{
+                HStack{
+                    Text("Business Profile").foregroundColor(.stone)
+                        .fontWeight(.bold)
+                        .italic()
+                        .font(.title2)
+                    Spacer()
+                        
+                }.padding()
+            
+            List {
+            HStack{
+                Text("Email:").foregroundColor(.stone)
+                    .fontWeight(.semibold)
+            
+                Text(self.bModel.post.business.email ?? "None").foregroundColor(.blue)
+            
+            }
+            HStack{
+                Text("Business Address:").foregroundColor(.stone)
+                    .fontWeight(.semibold)
+            
+                Text(self.model.post.business.).foregroundColor(.blue)
+            }
+                HStack{
+                    Text("Business Key:").foregroundColor(.stone)
+                        .fontWeight(.semibold)
+                
+                    Text(self.bModel.post.business.business_key ?? "Not Specified").foregroundColor(.blue)
+                }
+            }.frame(minHeight: 280)
+            }
+            List {
+                HStack{
+                    Spacer()
+                Button{
+                }label: {
+                    Text("Password Settings")
+                        .bold()
+                }.foregroundColor(.velvet)
+                    Spacer()
+                }
+            }.scrollEnabled(false)
+
+        Spacer()
+        NavigationLink {
+              //add link to update account detail page here - see button below which calls WelcomeView() its the same concept
+              BusinessUpdateView()
+            } label: {
+              RoundedRectangle(cornerRadius: 15)
+                    .foregroundColor(.red)
+                .overlay(Text("Update Account Details").foregroundColor(.white))
+            }
+           .frame(height: 60)
+
+
+        Spacer()
+        NavigationLink {
+              WelcomeView()
+            } label: {
+              RoundedRectangle(cornerRadius: 20)
+                    .foregroundColor(.yellow)
+                .overlay(Text("Logout").foregroundColor(.white))
+            }
+           .frame(height: 60)
+
+       }
+        .onAppear {
+        bModel.refreshModel()
+        print(model.email)
+      }
+    }
     }
 //    struct profile_Previews: PreviewProvider {
 //

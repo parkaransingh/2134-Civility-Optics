@@ -413,7 +413,43 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
-
+  static func getBusinessDetail(
+      email: String,
+      completion: @escaping (Post?) -> ()
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "businesses/me")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String : String] =  ["email": email]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+          printResponse(data)
+          
+          let decoder = JSONDecoder()
+          var post: Post? = nil
+          do {
+              post = try decoder.decode(Post.self, from: data)
+          }
+          catch {
+              print(error)
+          }
+          
+          completion(post)
+      }.resume()
+    }
     static func getUserDetail(
       email: String,
       completion: @escaping (Post?) -> ()
