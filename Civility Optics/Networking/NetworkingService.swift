@@ -49,7 +49,8 @@ extension NetworkingService {
       "review": AnyEncodable(comment),
       "place_id": AnyEncodable(id),
       "user_email": AnyEncodable(email),
-      "user_name": AnyEncodable(name)
+      "user_name": AnyEncodable(name),
+      "flagged": AnyEncodable(false)
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -414,6 +415,40 @@ extension NetworkingService {
       }.resume()
     }
     
+    static func report(
+        id: String
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "ratings/flag")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String : String] =  ["_id": id]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+      }.resume()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 struct AutocompleteResult: Codable {
@@ -427,6 +462,7 @@ struct AutocompleteResult: Codable {
 
 typealias ReviewsResult = [Review]
 struct Review: Codable, Hashable {
+  var _id : String
   var review: String
   var value: Double
   var tags: [String] 

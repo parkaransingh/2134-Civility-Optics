@@ -84,12 +84,14 @@ var email: String
                     let date = result.date_visited[...endOfSentence]
                     Text(date).font(.caption)
                     Spacer()
+                    Menu("Report") {
+                        Button("Report Review", action: { NetworkingService.report(id: result._id) })
+                    }
                 }
                 HStack(spacing: 4) {
                     let reviewer = "by " + result.user_name
                     Text(reviewer).font(.caption)
                     Spacer()
-                }
                 }
                 HStack(spacing: 4) {
                     // Convert Date to String
@@ -100,10 +102,12 @@ var email: String
                     Text(String(result.value)).foregroundColor(.gold)
                     Spacer()
                 }
+                
                 HStack(spacing: 4) {
                 Text(result.review)
                 .italic()
                 Spacer()
+                }
                 }
                 if !result.tags.isEmpty {
                 HStack(spacing: 4){
