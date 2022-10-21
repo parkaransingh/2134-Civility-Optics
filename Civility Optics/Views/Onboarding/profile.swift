@@ -103,42 +103,36 @@ struct profile: View {
            }.frame(minHeight: 100)
         }
       }
-      HStack {
-        Button(action: {
-            NetworkingService.userLogout()
-          }, label: {
-            ZStack {
-              RoundedRectangle(cornerRadius: 10)
-              Text("Logout Current Device")
-                .fontWeight(.bold)
-                .accentColor(.white)
-            }.frame(height: 60)
-          }
-        )
-          .accentColor(.velvet)
-          .padding()
-        Button(action: {
-            NetworkingService.userLogoutAllDevices()
-          }, label: {
-            ZStack {
-              RoundedRectangle(cornerRadius: 10)
-              Text("Logout All Devices")
-                .fontWeight(.bold)
-                .accentColor(.white)
-            }.frame(height: 60)
-          }
-        )
-          .accentColor(.velvet)
-          .padding()
-      }
       Spacer()
       NavigationLink {
-        WelcomeView()
-      } label: {
+        WelcomeView().navigationBarBackButtonHidden(true)
+      }
+    label: {
         RoundedRectangle(cornerRadius: 20)
-          .foregroundColor(.yellow)
-          .overlay(Text("Logout").foregroundColor(.white))
-      }.frame(height: 40)
+            .foregroundColor(.yellow)
+            .overlay(Text("Logout").foregroundColor(.white))
+        
+    }.frame(height: 40)
+            .simultaneousGesture(TapGesture().onEnded{
+                NetworkingService.userLogout()
+                
+            })
+        // NetworkingService.userLogoutAllDevices()
+        NavigationLink {
+            WelcomeView().navigationBarBackButtonHidden(true)
+            
+        }
+    label: {
+        RoundedRectangle(cornerRadius: 20)
+            .foregroundColor(.red)
+            .overlay(Text("Logout Out All Devices").foregroundColor(.white))
+        
+    }.frame(height: 40)
+            .simultaneousGesture(TapGesture().onEnded{
+                NetworkingService.userLogoutAllDevices()
+                
+            })
+        
     }
     .onAppear {
       model.refreshModel()
