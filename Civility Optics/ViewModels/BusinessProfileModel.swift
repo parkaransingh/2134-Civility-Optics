@@ -12,7 +12,7 @@ class BusinessProfileModel: ObservableObject {
         email: String
     ) {
       self.email = email
-      self.post = bPost(business: Business())
+      self.bPost = bPost(business: Business())
     }
     func refreshModel() {
         getBusiness(email:email)
@@ -24,13 +24,13 @@ class BusinessProfileModel: ObservableObject {
         if let result = result {
             DispatchQueue.main.async {
                 print(result)
-                self.post.business = result.business
+                self.bPost.business = result.business
             }
         }
     }   
     }
     
     
-    @Published var post:Post
+    @Published var bPost:bPost
     @Published var results: ReviewsResult = []
 }
