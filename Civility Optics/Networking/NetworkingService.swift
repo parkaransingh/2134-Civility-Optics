@@ -598,6 +598,7 @@ struct UserResult: Codable, Hashable {
 
 struct Post: Codable {
     var user: User
+    var business: Business
 }
 struct User: Codable, Identifiable {
     var id: String?
@@ -607,6 +608,15 @@ struct User: Codable, Identifiable {
     var gender: String?
     var race: String?
     var disability: String?
+}
+
+struct Business: Codable, Identifiable {
+    var id: String?
+    var email: String?
+    var isVerified: Bool?
+    var business_name: String?
+    var business_addr: String?
+    var business_key: String?
 }
 
 //struct User: Codable, Identifiable {
