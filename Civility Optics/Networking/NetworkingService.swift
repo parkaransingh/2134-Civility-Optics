@@ -413,9 +413,10 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+
   static func getBusinessDetail(
       email: String,
-      completion: @escaping (Post?) -> ()
+      completion: @escaping (bPost?) -> ()
     ) {
       var req = URLRequest(url: URL(string: baseURL + "businesses/me")!)
       req.httpMethod = "POST"
@@ -439,17 +440,18 @@ extension NetworkingService {
           printResponse(data)
           
           let decoder = JSONDecoder()
-          var post: Post? = nil
+          var bpost: bPost? = nil
           do {
-              post = try decoder.decode(Post.self, from: data)
+              bpost = try decoder.decode(bPost.self, from: data)
           }
           catch {
               print(error)
           }
           
-          completion(post)
+          completion(bpost)
       }.resume()
     }
+    
     static func getUserDetail(
       email: String,
       completion: @escaping (Post?) -> ()
