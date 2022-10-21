@@ -13,7 +13,7 @@ struct BusinessUpdateView: View {
     @ObservedObject var searchModel = SearchViewModel()
     
     
-    //@State var email: String = ""
+    @State var email: String = ""
     @State var password: String = ""
     @State var confirm: String = ""
     @State var didCreateAccount: Bool?
@@ -31,14 +31,14 @@ struct BusinessUpdateView: View {
     
     var body: some View {
         ScrollView() {
-            Text("Use your account to view and submit social-justice ratings of local venues.")
+            Text("Update information on your own business account")
                 .multilineTextAlignment(.leading)
                 .foregroundColor(.pale)
             
             VStack(spacing: 2) {
                 Text("")
             }
-
+            /**
             HStack {
             Text("Account Type:").font(.headline)
                 HStack (spacing: 5){
@@ -66,7 +66,7 @@ struct BusinessUpdateView: View {
                 )
             }
             }
-            
+            */
 
        //     if self.accountType == "Reviewer" || self.accountType == "" {
          //      model = RegisterViewModel()
@@ -80,8 +80,7 @@ struct BusinessUpdateView: View {
 
 
             VStack(alignment: .leading, spacing: 7) {
-                
-                Text("Email")
+                Text("Update Email")
                     .foregroundColor(.pale)
                     .fontWeight(.semibold)
                 ZStack {
@@ -99,7 +98,7 @@ struct BusinessUpdateView: View {
             }
             
             VStack(alignment: .leading, spacing: 4) {
-                Text("Password")
+                Text("Update Password")
                     .foregroundColor(.pale)
                     .fontWeight(.semibold)
                 ZStack {
@@ -115,7 +114,7 @@ struct BusinessUpdateView: View {
                 .frame(height: 40)
             }
             VStack(alignment: .leading, spacing: 4) {
-                Text("Confirm Password")
+                Text("Confirm New Password")
                     .foregroundColor(.pale)
                     .fontWeight(.semibold)
                 ZStack {
@@ -133,27 +132,8 @@ struct BusinessUpdateView: View {
                     Text("Passwords do not match").foregroundColor(.red)
                 }
                 
-                if self.accountType == "Reviewer" || self.accountType == "" {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Name")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                TextField("Name", text: $name)
-                                    .foregroundColor(.stone)
-                                    .keyboardType(.alphabet)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                    }
-                } else if self.accountType == "Business" {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Business Name")
+                        Text("Update Business Name")
                             .foregroundColor(.pale)
                             .fontWeight(.semibold)
                         ZStack {
@@ -204,26 +184,6 @@ struct BusinessUpdateView: View {
                         }
                         business_key = result.place_id
                     }
-                    /**
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Business Key")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                TextField("Business Key", text: $business_key)
-                                    .foregroundColor(.stone)
-                                    .keyboardType(.alphabet)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                        
-                    }
-                    */
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Address")
                             .foregroundColor(.pale)
@@ -241,111 +201,15 @@ struct BusinessUpdateView: View {
                         }
                         .frame(height: 40)
                     }
-                }
-
-              if self.accountType == "Reviewer" || self.accountType == "" {
-                VStack {
-                    
-                    DatePicker("Birth date:", selection: $birthDate, displayedComponents: .date)
-                        .onChange(of: birthDate, perform: { value in
-                            age = Calendar.current.dateComponents([.year, .month, .day], from: birthDate, to: Date())
-                            ageInt = age?.year ?? 0
-                            
-                        })
-                    if ageInt < 13 {
-                        // this is if user has not selected a date
-                        if (ageInt == 0 && age?.month ?? 0 == 0 && age?.day ?? 0 == 0) {
-                            Text("")
-                        } else {
-                            // selected and less than 13
-                            Text("Must be atleast 13 years of age to create account").foregroundColor(.red)
-                        }
-                    }
-                }
-              }
-
-
-              if self.accountType == "Reviewer" || self.accountType == "" {
-                Group{
-                    Text("*Optional: ")
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Race")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                Menu(race == "" ? "Choose Race" : race) {
-                                    Button("Asian", action: { chooseRace(myRace: "Asian") })
-                                    Button("Black", action: { chooseRace(myRace: "Black") })
-                                    Button("White", action: { chooseRace(myRace: "White") })
-                                    Button("Native American", action: { chooseRace(myRace: "Native American") })
-                                    Button("Native Hawaiian or other Pacific Islander", action: { chooseRace(myRace: "Native Hawaiian or other Pacific Islander") })
-                                    Button("Multiracial", action: { chooseRace(myRace: "Multiracial") })
-                                }
-                                .foregroundColor(.stone)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Gender")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                Menu(gender == "" ? "Choose Gender" : gender) {
-                                    Button("Male", action: { chooseGender(mygender: "Male") })
-                                    Button("Female", action: { chooseGender(mygender: "Female") })
-                                    Button("Non-Binary", action: { chooseGender(mygender: "Non-Binary") })
-                                    Button("other", action: { chooseGender(mygender: "other") })
-                                    
-                                }
-                                .foregroundColor(.stone)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Disabilities")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                TextField("Disabilities", text: $disability)
-                                    .foregroundColor(.stone)
-                                    .keyboardType(.alphabet)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                    }
-                }
-              }
-                Spacer()
-                
-                NavigationLink(tag: true, selection: $didCreateAccount) {
+                    NavigationLink(tag: true, selection: $didCreateAccount) {
                       //SearchView(model: .init())
                     TabView {
                         SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
-                        profile(model: UserProfileModel(email: self.email)).tabItem {
+                        profile(model: BusinessProfileModel(email: self.email)).tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
-                        
                     }
                     
                 } label: {
@@ -354,31 +218,19 @@ struct BusinessUpdateView: View {
                     didCreateAccount = newValue
                 }
                 Button {
-                    if(ageInt >= 13 && self.accountType == "Reviewer") {
-                        model.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender)
-                    } else if(self.accountType == "Business") {
-                        model.businessRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
-                    }
+                        model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.velvet)
-                        .overlay(Text("Create Account").foregroundColor(.white))
+                        .overlay(Text("Update Account").foregroundColor(.white))
                         .frame(height: 60)
                     
                 }
             }
+              
         }
         .padding()
-        .navigationTitle("Create an Account")
-    }
-    
-    func chooseRace(myRace: String) {
-        race = myRace
-        
-    }
-    func chooseGender(mygender: String) {
-        gender = mygender
-        
+        .navigationTitle("Update an Account")
     }
     
     
