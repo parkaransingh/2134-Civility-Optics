@@ -10,7 +10,8 @@ import Foundation
 @available(iOS 14.0, *)
 struct VenueDetails: View {
   
-  @ObservedObject var model: VenueDetailsModel
+@ObservedObject var model: VenueDetailsModel
+@State private var didTap = Array(repeating: true, count: 4)
 var email: String
   var body: some View {
     VStack {
@@ -109,6 +110,7 @@ var email: String
                 Spacer()
                 }
                 }
+
                 if !result.tags.isEmpty {
                 HStack(spacing: 4){
                 Text("Tags: ")
@@ -121,6 +123,21 @@ var email: String
                 Spacer()
                 }
             }
+                HStack(spacing: 4) {
+                    var str =  " Helpful " + String(result.helpful) + " "
+                    Button(action: {
+                            NetworkingService.helpful(email: email, id: result._id)
+                            model.refreshModel()
+                            }) {
+                                Text(str)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(Color.white)
+                            }
+                            .buttonStyle(CustomButtonStyle(isSelected: false))
+                            //.background(Color.gold) // If you have
+                            .cornerRadius(5)
+                Spacer()
+                }
             }
             Spacer()
           }
@@ -138,4 +155,14 @@ var email: String
       model.refreshModel()
     }
   }
+}
+
+
+struct CustomButtonStyle : ButtonStyle {
+    var isSelected: Bool
+ 
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.background(configuration.isPressed ? Color.blueDianne : Color.gold)
+            //Could also modify style based on isSelected
+    }
 }

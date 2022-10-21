@@ -50,7 +50,9 @@ extension NetworkingService {
       "place_id": AnyEncodable(id),
       "user_email": AnyEncodable(email),
       "user_name": AnyEncodable(name),
-      "flagged": AnyEncodable(false)
+      "flagged": AnyEncodable(false),
+      "helpful": AnyEncodable(0),
+      "helpfulUsers": AnyEncodable([""])
     ]
     req.httpBody = try? JSONEncoder().encode(body)
     
@@ -443,6 +445,38 @@ extension NetworkingService {
     }
     
     
+    static func helpful(
+        email: String,
+        id: String
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "ratings/helpful")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String : AnyEncodable] =  [
+            "email": AnyEncodable(email),
+            "_id": AnyEncodable(id),
+        ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+      }.resume()
+    }
+    
+    
     
     
     
@@ -468,6 +502,8 @@ struct Review: Codable, Hashable {
   var tags: [String] 
   var date_visited: String
   var user_name: String
+  var flagged: Bool
+  var helpful: Int
 }
 
 struct AnyEncodable: Encodable {
