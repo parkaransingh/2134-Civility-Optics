@@ -62,7 +62,7 @@ struct LoginView: View {
                     SearchView(model: .init(), email:self.email).tabItem {
                               Label("Search Places", systemImage: "magnifyingglass")
                                     }
-                    profile(model: UserProfileModel(email:self.email)).tabItem {
+                    profile(model: UserProfileModel(email:self.email), bModel: BusinessProfileModel(email: ""), accountType: "Reviewer").tabItem {
                         Label("Profile", systemImage: "person.circle.fill")
                     }
           

@@ -9,18 +9,14 @@ import SwiftUI
 
 struct BusinessUpdateView: View {
    
-    @ObservedObject var model = RegisterViewModel()
-    @ObservedObject var searchModel = SearchViewModel()
+    var model = RegisterViewModel()
+    var searchModel = SearchViewModel()
     
-    
+    var originalEmail: String
     @State var email: String = ""
     @State var password: String = ""
     @State var confirm: String = ""
     @State var didCreateAccount: Bool?
-    //@State var name: String = ""
-    //@State var race: String = ""
-    //@State var gender: String = ""
-    //@State var disability: String = ""
     @State private var birthDate = Date()
     @State private var age: DateComponents? = DateComponents()
     @State private var ageInt: Int = 0
@@ -28,6 +24,7 @@ struct BusinessUpdateView: View {
     @State var business_name = ""
     @State var business_key = ""
     @State var business_addr = ""
+    @State var query = ""
     
     var body: some View {
         ScrollView() {
@@ -167,13 +164,13 @@ struct BusinessUpdateView: View {
                             searchModel.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
                         }
                         ScrollView {
-                            searchfield
-                            ForEach(model.results, id: \.self) { result in
+                            //searchfield
+                            ForEach(searchModel.results, id: \.self) { result in
                                 NavigationLink { 
                                 if #available(iOS 14.0, *) {
                                     VenueDetails(model: .init(
                                     placeID: result.place_id,
-                                    description: result.description), email: self.email)
+                                    description: result.description), email: self.originalEmail)
                                 } else {
                                     Text(result.description)
                                 }
@@ -182,7 +179,6 @@ struct BusinessUpdateView: View {
                                 }
                             }
                         }
-                        business_key = result.place_id
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Address")
@@ -207,7 +203,7 @@ struct BusinessUpdateView: View {
                         SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
-                        profile(model: BusinessProfileModel(email: self.email)).tabItem {
+                        profile(model: UserProfileModel(email: ""), bModel: BusinessProfileModel(email: self.email), accountType: "Business").tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
                     }

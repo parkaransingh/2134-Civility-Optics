@@ -169,7 +169,7 @@ struct RegisterView: View {
                         }
                         .frame(height: 40)
                     }
-                    var searchfield: some View {
+                  /**  var searchfield: some View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
                             .foregroundColor(.pale)
@@ -205,8 +205,12 @@ struct RegisterView: View {
                             }
                         }
                     }
+                   
                     
                     }
+                   
+                   */
+                    
                     /**
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Key")
@@ -345,7 +349,7 @@ struct RegisterView: View {
                         SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
-                        profile(model: UserProfileModel(email: self.email)).tabItem {
+                        profile(model: UserProfileModel(email: self.email), bModel: BusinessProfileModel(email: ""), accountType: accountType).tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
                         

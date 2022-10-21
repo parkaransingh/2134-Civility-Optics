@@ -11,6 +11,8 @@ struct profile: View {
     
     @ObservedObject var model : UserProfileModel
     @ObservedObject var bModel: BusinessProfileModel
+    var accountType: String
+    
     var body: some View {
         if (self.accountType == "Reviewer" || self.accountType == "") {
         VStack{
@@ -107,7 +109,7 @@ struct profile: View {
             HStack{
                 
                 Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
-              Text(self.bModel.post.business.business_name ?? "None").foregroundColor(.blueDianne)
+                Text(self.bModel.bpost.business.business_name ?? "None").foregroundColor(.blueDianne)
                     .font(.largeTitle).fontWeight(.bold)
                 
             }
@@ -126,20 +128,20 @@ struct profile: View {
                 Text("Email:").foregroundColor(.stone)
                     .fontWeight(.semibold)
             
-                Text(self.bModel.post.business.email ?? "None").foregroundColor(.blue)
+                Text(self.bModel.bpost.business.email ?? "None").foregroundColor(.blue)
             
             }
             HStack{
                 Text("Business Address:").foregroundColor(.stone)
                     .fontWeight(.semibold)
             
-                Text(self.model.post.business.).foregroundColor(.blue)
+                Text(self.bModel.bpost.business.business_addr ?? "None").foregroundColor(.blue)
             }
                 HStack{
                     Text("Business Key:").foregroundColor(.stone)
                         .fontWeight(.semibold)
                 
-                    Text(self.bModel.post.business.business_key ?? "Not Specified").foregroundColor(.blue)
+                    Text(self.bModel.bpost.business.business_key ?? "Not Specified").foregroundColor(.blue)
                 }
             }.frame(minHeight: 280)
             }
@@ -158,7 +160,7 @@ struct profile: View {
         Spacer()
         NavigationLink {
               //add link to update account detail page here - see button below which calls WelcomeView() its the same concept
-              BusinessUpdateView()
+            BusinessUpdateView(originalEmail: self.bModel.bpost.business.email ?? "None")
             } label: {
               RoundedRectangle(cornerRadius: 15)
                     .foregroundColor(.red)
