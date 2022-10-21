@@ -254,6 +254,49 @@ extension NetworkingService {
     }.resume()
   }
 
+  static func update(
+    email: String, 
+    password: String,
+    name: String,
+    race: String,
+    disability: String,
+    gender: String,
+    completion: @escaping (AuthResult?) -> ()
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "users")!)
+    req.httpMethod = "PATCH"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let body: [String: String] = [
+      "email": email,
+      "password": password,
+      "name": name,
+      "race": race,
+      "disability": disability,
+      "gender": gender
+    ]
+    
+    req.httpBody = try? JSONEncoder().encode(body)
+    
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+      
+      printResponse(data)
+      
+      completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+    }.resume()
+  }
+
   static func businessRegister(
     email: String, 
     password: String,
@@ -264,6 +307,47 @@ extension NetworkingService {
   ) {
     var req = URLRequest(url: URL(string: baseURL + "businesses")!)
     req.httpMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let body: [String: String] = [
+      "email": email.lowercased(),
+      "password": password,
+      "business_key": business_key,
+      "business_name": business_name,
+      "business_address": business_addr
+    ]
+    
+    req.httpBody = try? JSONEncoder().encode(body)
+    
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+      
+      printResponse(data)
+      
+      completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+    }.resume()
+  }
+
+  static func businessUpdate(
+    email: String, 
+    password: String,
+    business_key: String,
+    business_name: String,
+    business_addr: String,
+    completion: @escaping (AuthResult?) -> ()
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "businesses")!)
+    req.httpMethod = "PATCH"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
       "email": email.lowercased(),
