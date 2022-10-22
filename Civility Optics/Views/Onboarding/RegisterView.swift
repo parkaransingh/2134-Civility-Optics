@@ -169,7 +169,7 @@ struct RegisterView: View {
                         }
                         .frame(height: 40)
                     }
-                    var searchfield: some View {
+                    /*var searchfield: some View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
                             .foregroundColor(.pale)
@@ -206,8 +206,8 @@ struct RegisterView: View {
                         }
                     }
                     
-                    }
-                    /**
+                    }*/
+                    
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Key")
                             .foregroundColor(.pale)
@@ -226,7 +226,7 @@ struct RegisterView: View {
                         .frame(height: 40)
                         
                     }
-                    */
+                    
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Address")
                             .foregroundColor(.pale)
