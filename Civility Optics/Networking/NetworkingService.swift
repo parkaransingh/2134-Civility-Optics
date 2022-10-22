@@ -344,6 +344,7 @@ extension NetworkingService {
     business_key: String,
     business_name: String,
     business_addr: String,
+    token: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "businesses/update")!) //was businesses by itself before
@@ -355,6 +356,7 @@ extension NetworkingService {
       "business_key": business_key,
       "business_name": business_name,
       "business_address": business_addr
+      "token": token
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
