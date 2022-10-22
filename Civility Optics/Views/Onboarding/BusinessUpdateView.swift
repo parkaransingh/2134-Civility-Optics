@@ -146,7 +146,6 @@ struct BusinessUpdateView: View {
                         }
                         .frame(height: 40)
                     }
-                    /*
                     VStack(alignment: .leading, spacing: 4) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
@@ -168,21 +167,24 @@ struct BusinessUpdateView: View {
                             //searchfield
                             ForEach(searchModel.results, id: \.self) { result in
                                 NavigationLink { 
+                                    Text(result.description)
+                                    self.business_key = result.place_id
+                                    /*
                                 if #available(iOS 14.0, *) {
+                                    
                                     VenueDetails(model: .init(
                                     placeID: result.place_id,
                                     description: result.description), email: self.originalEmail)
                                     business_key = result.place_id //commented above out to prevent rate page from showing
                                 } else {
                                     Text(result.description)
-                                }
+                                }*/
                                 } label: {
                                     VenueItem(title: result.description)
                                 }
                             }
                         }
                     }
-                    */
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Key")
                             .foregroundColor(.pale)

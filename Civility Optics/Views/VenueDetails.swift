@@ -11,7 +11,7 @@ import Foundation
 struct VenueDetails: View {
   
   @ObservedObject var model: VenueDetailsModel
-var email: String
+  var email: String
   var body: some View {
     VStack {
       HStack {
