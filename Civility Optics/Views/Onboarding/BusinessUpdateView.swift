@@ -217,7 +217,7 @@ struct BusinessUpdateView: View {
                     didCreateAccount = newValue
                 }
                 Button {
-                        model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
+                        model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr, )
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.velvet)
