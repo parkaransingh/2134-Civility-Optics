@@ -146,6 +146,7 @@ struct BusinessUpdateView: View {
                         }
                         .frame(height: 40)
                     }
+                    /*
                     VStack(alignment: .leading, spacing: 4) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
@@ -168,11 +169,9 @@ struct BusinessUpdateView: View {
                             ForEach(searchModel.results, id: \.self) { result in
                                 NavigationLink { 
                                 if #available(iOS 14.0, *) {
-                                    /*
                                     VenueDetails(model: .init(
                                     placeID: result.place_id,
                                     description: result.description), email: self.originalEmail)
-                                    */
                                     business_key = result.place_id //commented above out to prevent rate page from showing
                                 } else {
                                     Text(result.description)
@@ -183,6 +182,26 @@ struct BusinessUpdateView: View {
                             }
                         }
                     }
+                    */
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Business Key")
+                            .foregroundColor(.pale)
+                            .fontWeight(.semibold)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(.pale)
+                            HStack {
+                                TextField("Business Key", text: $business_key)
+                                    .foregroundColor(.stone)
+                                    .keyboardType(.alphabet)
+                                Spacer()
+                            }
+                            .padding(.horizontal, 14)
+                        }
+                        .frame(height: 40)
+                        
+                    }
+
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Business Address")
                             .foregroundColor(.pale)
