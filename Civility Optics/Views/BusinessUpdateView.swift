@@ -9,14 +9,18 @@ import SwiftUI
 
 struct BusinessUpdateView: View {
    
-    var model = RegisterViewModel()
-    var searchModel = SearchViewModel()
+    @ObservedObject var model = RegisterViewModel()
+    @ObservedObject var searchModel = SearchViewModel()
     
-    var originalEmail: String
+    
     @State var email: String = ""
     @State var password: String = ""
     @State var confirm: String = ""
     @State var didCreateAccount: Bool?
+    //@State var name: String = ""
+    //@State var race: String = ""
+    //@State var gender: String = ""
+    //@State var disability: String = ""
     @State private var birthDate = Date()
     @State private var age: DateComponents? = DateComponents()
     @State private var ageInt: Int = 0
@@ -168,9 +172,10 @@ struct BusinessUpdateView: View {
                             ForEach(searchModel.results, id: \.self) { result in
                                 NavigationLink { 
                                 if #available(iOS 14.0, *) {
-                                    VenueDetails(model: .init(
+                                    VenueDetails(searchModel: .init(
                                     placeID: result.place_id,
-                                    description: result.description), email: self.originalEmail)
+                                    //business_key = result.place_id,
+                                    description: result.description), email: self.email)
                                 } else {
                                     Text(result.description)
                                 }
@@ -203,7 +208,7 @@ struct BusinessUpdateView: View {
                         SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
-                        profile(model: UserProfileModel(email: ""), bModel: BusinessProfileModel(email: self.email), accountType: "Business").tabItem {
+                        profile(model: BusinessProfileModel(email: self.email)).tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
                     }

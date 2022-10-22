@@ -24,7 +24,7 @@ class BusinessProfileModel: ObservableObject {
         if let result = result {
             DispatchQueue.main.async {
                 print(result)
-                //self.bPost.business = result.business
+                //self.bPost.business = result.business 
                 self.bpost.business = result.business
             }
         }

@@ -345,7 +345,7 @@ struct RegisterView: View {
                         SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
-                        profile(model: UserProfileModel(email: self.email)).tabItem {
+                        profile(model: UserProfileModel(email: self.email), bModel: BusinessProfileModel(email: ""), accountType: accountType).tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
                         

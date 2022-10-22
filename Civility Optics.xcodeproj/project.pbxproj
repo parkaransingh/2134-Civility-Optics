@@ -16,6 +16,8 @@
 		E8BC307128E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
 		E8BC307228E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
 		E8BC307328E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
+		E8FBE02429024D1200221F7D /* BusinessProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBE02329024D1200221F7D /* BusinessProfileModel.swift */; };
+		E8FBE02629024D2400221F7D /* BusinessUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */; };
 		F90AF9A42707E90600F5085F /* VenueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A32707E90600F5085F /* VenueItem.swift */; };
 		F90AF9A62707F1F700F5085F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A52707F1F700F5085F /* SearchView.swift */; };
 		F90AF9A82707F2C500F5085F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A72707F2C500F5085F /* SearchViewModel.swift */; };
@@ -72,6 +74,8 @@
 		80B5D17F28CCF94300379E26 /* FistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FistsView.swift; sourceTree = "<group>"; };
 		80FFD31C28DF8D230090E5D8 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		E8BC307028E7651800F4F5F6 /* civility-optics-api */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "civility-optics-api"; path = "../civility-optics-api"; sourceTree = "<group>"; };
+		E8FBE02329024D1200221F7D /* BusinessProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileModel.swift; sourceTree = "<group>"; };
+		E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUpdateView.swift; sourceTree = "<group>"; };
 		F90AF9A32707E90600F5085F /* VenueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueItem.swift; sourceTree = "<group>"; };
 		F90AF9A52707F1F700F5085F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F90AF9A72707F2C500F5085F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 				F9B06B91275C23EC0095EEC9 /* RegisterViewModel.swift */,
 				F9B06B97275C283E0095EEC9 /* LoginViewModel.swift */,
 				80FFD31C28DF8D230090E5D8 /* UserProfileModel.swift */,
+				E8FBE02329024D1200221F7D /* BusinessProfileModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				F9B06B8B275C1B440095EEC9 /* WelcomeView.swift */,
 				F9B06B8F275C20350095EEC9 /* RegisterView.swift */,
 				F9B06B95275C27FD0095EEC9 /* LoginView.swift */,
+				E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */,
 				80AC89FC28032A6E00F68D59 /* profile.swift */,
 			);
 			path = Onboarding;
@@ -404,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FBE02629024D2400221F7D /* BusinessUpdateView.swift in Sources */,
 				F9168C8D26E43DE20028E469 /* RateViewModel.swift in Sources */,
 				F94661AD262B576F006078DB /* RateView.swift in Sources */,
 				F9B06B8E275C1D230095EEC9 /* Color.swift in Sources */,
@@ -425,6 +432,7 @@
 				F9B06B94275C250A0095EEC9 /* AuthService.swift in Sources */,
 				80AC89FD28032A6E00F68D59 /* profile.swift in Sources */,
 				F90AF9A62707F1F700F5085F /* SearchView.swift in Sources */,
+				E8FBE02429024D1200221F7D /* BusinessProfileModel.swift in Sources */,
 				F94661B2262B5B51006078DB /* UITextView.swift in Sources */,
 				F9279A712629E61C00E39A2C /* Civility_Optics.xcdatamodeld in Sources */,
 				80B5D18028CCF94300379E26 /* FistsView.swift in Sources */,
