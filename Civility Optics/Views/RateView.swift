@@ -67,9 +67,9 @@ struct RateView: View {
         }
         
         if !comment.isEmpty {
-            NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
+            NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID, name: self.usermodel.post.name ?? "none", email: self.usermodel.post.email ?? "none")
         } else {
-            NetworkingService.submitRating(rating, date: date, tag: tags, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
+            NetworkingService.submitRating(rating, date: date, tag: tags, id: model.placeID, name: self.usermodel.post.name ?? "none", email: self.usermodel.post.email ?? "none")
         }
         
         presentation.wrappedValue.dismiss()
