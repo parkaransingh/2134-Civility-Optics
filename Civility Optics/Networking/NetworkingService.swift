@@ -346,7 +346,7 @@ extension NetworkingService {
     business_addr: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
-    var req = URLRequest(url: URL(string: baseURL + "businesses")!)
+    var req = URLRequest(url: URL(string: baseURL + "businesses/update")!) //was businesses by itself before
     req.httpMethod = "PATCH"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
