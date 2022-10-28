@@ -21,6 +21,25 @@ William Silva
 
 # Civility Optics iOS Release Notes
 
+## v 1.3.0, build 4
+###Features:
+- Log out/in to multiple accounts on the same device
+- Verify a users email
+- Banned users are unable to log in or get authentication
+- Indicate helpful reviews
+- Flag/report a user/review
+- Authenticate user actions
+
+###Bug fixes:
+- auth now uses correct request body field.
+
+###Known Issues and Limitations:
+- Date time submitted for reviews still wrong.
+- Latency with helpful count (missing model refresh?)
+- Submit single ratings without a review
+- Move mongo key to env
+- Contradicting tags
+
 ## v 1.2.0, build 3
 ### Features
 - View past ratings and revuews on profile page
