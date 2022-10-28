@@ -22,7 +22,7 @@ William Silva
 # Civility Optics iOS Release Notes
 
 ## v 1.3.0, build 4
-###Features:
+### Features:
 - Log out/in to multiple accounts on the same device
 - Verify a users email
 - Banned users are unable to log in or get authentication
@@ -30,10 +30,10 @@ William Silva
 - Flag/report a user/review
 - Authenticate user actions
 
-###Bug fixes:
+### Bug fixes:
 - auth now uses correct request body field.
 
-###Known Issues and Limitations:
+### Known Issues and Limitations:
 - Date time submitted for reviews still wrong.
 - Latency with helpful count (missing model refresh?)
 - Submit single ratings without a review
