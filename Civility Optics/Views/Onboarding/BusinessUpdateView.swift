@@ -1,5 +1,5 @@
 //
-//  RegisterView.swift
+//  BusinessUpdateView.swift
 //  Civility Optics
 //
 //  Created by Michael Verges on 12/4/21.
@@ -35,46 +35,11 @@ struct BusinessUpdateView: View {
             VStack(spacing: 2) {
                 Text("")
             }
-            /**
-            HStack {
-            Text("Account Type:").font(.headline)
-                HStack (spacing: 5){
-                RadioButtonField(
-                    id: "Reviewer",
-                    label: "Reviewer",
-                    color:.black,
-                    bgColor: .black,
-                    isMarked: $accountType.wrappedValue == "Reviewer" ? true : false,
-                    callback: { selected in
-                        self.accountType = selected
-                        print("Selected account is: \(selected)")
-                    }
-                )
-                RadioButtonField(
-                    id: "Business",
-                    label: "Business",
-                    color:.black,
-                    bgColor: .black,
-                    isMarked: $accountType.wrappedValue == "Business" ? true : false,
-                    callback: { selected in
-                        self.accountType = selected
-                        print("Selected account is: \(selected)")
-                    }
-                )
-            }
-            }
-            */
-
-       //     if self.accountType == "Reviewer" || self.accountType == "" {
-         //      model = RegisterViewModel()
-           // } else if self.accountType == "Business" {
-             //  model = BusinessRegisterViewModel()
-            //}
+            
             
             VStack(spacing: 2) {
                 Text("")
             }
-
 
             VStack(alignment: .leading, spacing: 7) {
                 Text("Update Email")
