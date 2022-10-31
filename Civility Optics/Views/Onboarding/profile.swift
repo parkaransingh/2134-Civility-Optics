@@ -194,6 +194,19 @@ struct profile: View {
                         Spacer()
                     }
                 }.scrollEnabled(false)
+
+           
+                Spacer()
+                NavigationLink {
+                    //add link for business account to select display preferences
+                    BusinessUpdateView(originalEmail: self.bModel.bpost.business.email ?? "None")
+                } label: {
+                    RoundedRectangle(cornerRadius: 15)
+                        .foregroundColor(.blue)
+                        .overlay(Text("Update Preferences").foregroundColor(.white))
+                }
+                .frame(height: 60)
+
                 
                 Spacer()
                 NavigationLink {
