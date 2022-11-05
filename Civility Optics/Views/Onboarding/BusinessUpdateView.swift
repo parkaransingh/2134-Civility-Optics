@@ -24,6 +24,7 @@ struct BusinessUpdateView: View {
     @State var business_name = ""
     @State var business_key = ""
     @State var business_addr = ""
+    @State var business_description = ""
     @State var query = ""
     
     var body: some View {
@@ -201,7 +202,8 @@ struct BusinessUpdateView: View {
                     didCreateAccount = newValue
                 }
                 Button {
-                    model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr, token: AuthService.current.token ?? "")
+                    //business_description = 
+                    model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr, business_description: business_description, token: AuthService.current.token ?? "")
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.velvet)

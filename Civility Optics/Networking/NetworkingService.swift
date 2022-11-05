@@ -349,6 +349,7 @@ extension NetworkingService {
     business_key: String,
     business_name: String,
     business_addr: String,
+    business_description: String,
     token: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
@@ -361,6 +362,7 @@ extension NetworkingService {
       "business_key": business_key,
       "business_name": business_name,
       "business_address": business_addr,
+      "business_description": business_description
       "token": token
     ]
     
@@ -762,6 +764,7 @@ struct Business: Codable, Identifiable {
     var business_name: String?
     var business_addr: String?
     var business_key: String?
+    var business_description: String?
 }
 
 //struct User: Codable, Identifiable {
