@@ -75,6 +75,36 @@ extension NetworkingService {
       printResponse(data)
     }.resume()
   }
+    
+    
+    static func sendVerification() {
+      let bearer = "Bearer " + AuthService.current.token!
+      var req = URLRequest(url: URL(string: baseURL + "users/me/sendcode")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+
+        printResponse(data)
+      }.resume()
+    }
+    
   
   static func getValue(
     placeID: String,

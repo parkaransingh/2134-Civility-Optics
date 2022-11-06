@@ -12,6 +12,7 @@ class RegisterViewModel: ObservableObject {
     func register(email: String, password: String, name: String, race: String, disability: String, gender: String ) {
         NetworkingService.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender) { result in
       AuthService.current.token = result?.token
+      NetworkingService.sendVerification()
       DispatchQueue.main.async {
         self.success = true
       }
