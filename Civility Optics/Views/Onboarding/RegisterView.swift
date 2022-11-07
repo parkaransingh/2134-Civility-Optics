@@ -300,17 +300,18 @@ struct RegisterView: View {
                 Spacer()
                 
                 NavigationLink(tag: true, selection: $didCreateAccount) {
+                    VerifyView(email: self.email)
                       //SearchView(model: .init())
-                    TabView {
-                        SearchView(model: .init(), email: email).tabItem {
-                            Label("Search Places", systemImage: "magnifyingglass")
-                        }
-                        profile(model: UserProfileModel(email: self.email)).tabItem {
-                            Label("Profile", systemImage: "person.circle.fill")
-                        }
-                        
-                    }
-                    
+//                    TabView {
+//                        SearchView(model: .init(), email: email).tabItem {
+//                            Label("Search Places", systemImage: "magnifyingglass")
+//                        }
+//                        profile(model: UserProfileModel(email: self.email)).tabItem {
+//                            Label("Profile", systemImage: "person.circle.fill")
+//                        }
+//
+//                    }
+                 
                 } label: {
                     EmptyView()
                 }.onChange(of: model.success) { newValue in
