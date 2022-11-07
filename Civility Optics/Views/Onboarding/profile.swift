@@ -199,7 +199,7 @@ struct profile: View {
                 Spacer()
                 NavigationLink {
                     //add link for business account to select display preferences
-                    BusinessUpdateView(originalEmail: self.bModel.bpost.business.email ?? "None")
+                    BusinessPreferences()
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
                         .foregroundColor(.blue)

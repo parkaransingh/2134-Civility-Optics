@@ -25,6 +25,6 @@ struct BusinessPreferences: View {
         //refresh page here
         model.refreshModel()
       }
-
+      }
   }
 }
