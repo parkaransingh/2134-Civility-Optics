@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct BusinessPreferences: View {
-    var model = VenueDetailsModel(placeID: self.place_id, description: self.description)
-    
-    var originalEmail: String
+    var email: String
+    var bModel = BusinessProfileModel(email: email)
+    var rModel = RegisterViewModel()
+    var model = VenueDetailsModel(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description)
     @State var newDescription = ""
 
     var body: some View {
       VStack(alignment: .leading, spacing: 4) {
-        VenueDetails(model: .init(placeID: result.place_id, description: self.description), email: self.email)
+        VenueDetails(model: .init(placeID: result.place_id, description: bModel.bpost.business.business_description), email: self.email)
         Spacer()
         TextField("Change your business page description here.",
         text: $newDescription
         )
       .onSubmit {
-        model.businessUpdate(email: self.email, password: self.password, business_key: self.business_key, business_name: self.business_name, business_addr: self.business_addr, business_description: newDescription, token: self.description, AuthService.current.token ?? "")
+        rModel.businessUpdate(email: self.email, password: self.password, business_key: self.business_key, business_name: self.business_name, business_addr: self.business_addr, business_description: newDescription, token: self.description, AuthService.current.token ?? "")
         //refresh page here
-        model.refreshModel()
+        bModel.refreshModel()
       }
-      }
+    }
   }
 }
