@@ -90,11 +90,11 @@ struct LoginView: View {
                     SearchView(model: .init(), email:self.email).tabItem {
                               Label("Search Places", systemImage: "magnifyingglass")
                                     }
-                    profile(model: UserProfileModel(email:self.email), bModel: BusinessProfileModel(email: ""), accountType: "Reviewer").tabItem {
+                    profile(model: UserProfileModel(email:accountType == "Reviewer" ? self.email : ""), bModel: BusinessProfileModel(email: accountType == "Reviewer" ? "" : self.email), accountType: self.accountType).tabItem {
                         Label("Profile", systemImage: "person.circle.fill")
                     }
           
-                            }
+                }
                 
         //SearchView(model: .init())s
       } label: { 
@@ -104,7 +104,7 @@ struct LoginView: View {
       }
 
       Button {
-          if(accountType=="" || accountType=="Reviewer") {
+          if(accountType == "" || accountType=="Reviewer") {
               model.login(email: email, password: password)
           } else {
               model.bLogin(email: email, password: password)

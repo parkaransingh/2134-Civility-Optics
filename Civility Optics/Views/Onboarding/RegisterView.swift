@@ -403,44 +403,44 @@ struct RadioButtonField: View {
 }
 
     
-    /*var searchfield: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12)
-            .foregroundColor(.pale)
-        HStack {
-            TextField("Search for Business", text: $query)
-            
-            .foregroundColor(.stone)
-            Spacer()
-        }
-            .padding(.horizontal, 14)
-        }
-            .frame(height: 40)
-            .padding(15)
-            .onChange(of: query) { newValue in
-            searchModel.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
-        }
-        var results: some View {
-        ScrollView {
-            searchfield
-            ForEach(model.results, id: \.self) { result in
-                NavigationLink {
-                if #available(iOS 14.0, *) {
-                    business_key = result.place_id
-                    VenueDetails(model: .init(
-                    placeID: result.place_id,
-                    description: result.description), email: self.email)
-                } else {
-                    Text(result.description)
-                }
-                } label: {
-                    VenueItem(title: result.description)
-                }
-            }
-        }
-    }
-    
-    }*/
+//    var searchfield: some View {
+//        ZStack {
+//            RoundedRectangle(cornerRadius: 12)
+//            .foregroundColor(.pale)
+//        HStack {
+//            TextField("Search for Business", text: $query)
+//
+//            .foregroundColor(.stone)
+//            Spacer()
+//        }
+//            .padding(.horizontal, 14)
+//        }
+//            .frame(height: 40)
+//            .padding(15)
+//            .onChange(of: query) { newValue in
+//            searchModel.generateResults(for: newValue, sessionID: AutocompleteSession.current.getSessionToken())
+//        }
+//        var results: some View {
+//        ScrollView {
+//            searchfield
+//            ForEach(model.results, id: \.self) { result in
+//                NavigationLink {
+//                if #available(iOS 14.0, *) {
+//                    business_key = result.place_id
+//                    VenueDetails(model: .init(
+//                    placeID: result.place_id,
+//                    description: result.description), email: self.email)
+//                } else {
+//                    Text(result.description)
+//                }
+//                } label: {
+//                    VenueItem(title: result.description)
+//                }
+//            }
+//        }
+//    }
+//
+//    }
 
     
 }
