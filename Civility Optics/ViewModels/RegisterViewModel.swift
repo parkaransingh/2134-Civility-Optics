@@ -37,9 +37,9 @@ class RegisterViewModel: ObservableObject {
     }
   }
 
-  func businessUpdate(email: String, password: String, business_key: String, business_name: String, business_addr: String, business_description: String, token: String) {
+  func businessUpdate(email: String, business_key: String, business_name: String, business_addr: String, business_description: String, token: String) {
     print("businessUpdate started for ", email)
-    NetworkingService.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr, business_description: business_description, token: token) { result in
+    NetworkingService.businessUpdate(email: email, business_key: business_key, business_name: business_name, business_addr: business_addr, business_description: business_description, token: token) { result in
       AuthService.current.token = result?.token
       DispatchQueue.main.async {
         self.success = true

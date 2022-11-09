@@ -203,7 +203,7 @@ struct BusinessUpdateView: View {
                 }
                 Button {
                     //business_description = 
-                    model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr, business_description: business_description, token: AuthService.current.token ?? "")
+                    model.businessUpdate(email: email, business_key: business_key, business_name: business_name, business_addr: business_addr, business_description: business_description, token: AuthService.current.token ?? "")
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.velvet)

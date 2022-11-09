@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80389FA0291C570C0011368E /* BusinessPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389F9F291C570C0011368E /* BusinessPreferences.swift */; };
 		808941E628D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
 		808941E728D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
 		808941E828D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80389F9F291C570C0011368E /* BusinessPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessPreferences.swift; sourceTree = "<group>"; };
 		808941E528D2A265003ECBCF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		80AC89FC28032A6E00F68D59 /* profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 		80B5D17F28CCF94300379E26 /* FistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FistsView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				F9B06B8F275C20350095EEC9 /* RegisterView.swift */,
 				F9B06B95275C27FD0095EEC9 /* LoginView.swift */,
 				E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */,
+				80389F9F291C570C0011368E /* BusinessPreferences.swift */,
 				80AC89FC28032A6E00F68D59 /* profile.swift */,
 			);
 			path = Onboarding;
@@ -428,6 +431,7 @@
 				F9168C8F26E43E300028E469 /* CategoryMenuModel.swift in Sources */,
 				F9B06B96275C27FD0095EEC9 /* LoginView.swift in Sources */,
 				F90AF9A82707F2C500F5085F /* SearchViewModel.swift in Sources */,
+				80389FA0291C570C0011368E /* BusinessPreferences.swift in Sources */,
 				F9B06B89275C18D10095EEC9 /* VenueDetailsModel.swift in Sources */,
 				F9B06B94275C250A0095EEC9 /* AuthService.swift in Sources */,
 				80AC89FD28032A6E00F68D59 /* profile.swift in Sources */,

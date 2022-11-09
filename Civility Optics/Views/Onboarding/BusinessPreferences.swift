@@ -8,24 +8,27 @@
 import SwiftUI
 
 struct BusinessPreferences: View {
-    var email: String
-    var bModel = BusinessProfileModel(email: email)
+    @ObservedObject var bModel: BusinessProfileModel
     var rModel = RegisterViewModel()
-    var model = VenueDetailsModel(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description)
+    //var model = VenueDetailsModel(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description)
     @State var newDescription = ""
 
     var body: some View {
       VStack(alignment: .leading, spacing: 4) {
-        VenueDetails(model: .init(placeID: result.place_id, description: bModel.bpost.business.business_description), email: self.email)
+          VenueDetails(model: .init(placeID: bModel.bpost.business.business_key ?? "", description: bModel.bpost.business.business_description ?? ""), email: bModel.bpost.business.email ?? "")
         Spacer()
         TextField("Change your business page description here.",
         text: $newDescription
         )
-      .onSubmit {
-        rModel.businessUpdate(email: self.email, password: self.password, business_key: self.business_key, business_name: self.business_name, business_addr: self.business_addr, business_description: newDescription, token: self.description, AuthService.current.token ?? "")
-        //refresh page here
-        bModel.refreshModel()
-      }
+          Button {
+              rModel.businessUpdate(email: self.bModel.bpost.business.email ?? "", business_key: self.bModel.bpost.business.business_key ?? "", business_name: self.bModel.bpost.business.business_name ?? "", business_addr: self.bModel.bpost.business.business_addr ?? "", business_description: newDescription, token: AuthService.current.token ?? "")
+            //refresh page here
+            bModel.refreshModel()
+          } label: {
+              Text("Press Me")
+                  .padding(20)
+          }
+          .contentShape(Rectangle())
     }
   }
 }

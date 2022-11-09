@@ -344,8 +344,7 @@ extension NetworkingService {
   }
 
   static func businessUpdate(
-    email: String, 
-    password: String,
+    email: String,
     business_key: String,
     business_name: String,
     business_addr: String,
@@ -353,16 +352,17 @@ extension NetworkingService {
     token: String,
     completion: @escaping (AuthResult?) -> ()
   ) {
+    let bearer = "Bearer " + AuthService.current.token!
     var req = URLRequest(url: URL(string: baseURL + "businesses/update")!) //was businesses by itself before
     req.httpMethod = "POST"
     req.setValue("application/json", forHTTPHeaderField: "Content-Type")
     let body: [String: String] = [
+      "Authorization": bearer,
       "email": email.lowercased(),
-      "password": password,
       "business_key": business_key,
       "business_name": business_name,
       "business_address": business_addr,
-      "business_description": business_description
+      "business_description": business_description,
       "token": token
     ]
     
@@ -422,6 +422,41 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
+    
+static func bLogin(
+      email: String,
+      password: String,
+      completion: @escaping (AuthResult?) -> ()
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "businesses/login")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String: String] = [
+        "email": email,
+        "password": password,
+      ]
+      
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+        
+        completion(try? JSONDecoder().decode(AuthResult.self, from: data))
+      }.resume()
+    }
 
   static func getBusinessDetail(
       email: String,
