@@ -8,27 +8,32 @@
 import SwiftUI
 
 struct BusinessPreferences: View {
-    @ObservedObject var bModel: BusinessProfileModel
+    var email: String
+    var bModel = BusinessProfileModel(email: email)
     var rModel = RegisterViewModel()
-    //var model = VenueDetailsModel(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description)
+    var model = VenueDetailsModel(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description)
     @State var newDescription = ""
 
     var body: some View {
       VStack(alignment: .leading, spacing: 4) {
-          VenueDetails(model: .init(placeID: bModel.bpost.business.business_key ?? "", description: bModel.bpost.business.business_description ?? ""), email: bModel.bpost.business.email ?? "")
+        //VenueDetails(model: .init(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description), email: self.email)
+        let s1 = "Business Name: " + bModel.bpost.business.business_name
+        let s2 = "Business Address: " + bModel.bpost.business.business_addr
+        let s3 = "Business Description: " + bModel.bpost.business.business_description
+        Text(s1)
+        Spacer()
+        Text(s2)
+        Spacer()
+        Text(s3)
         Spacer()
         TextField("Change your business page description here.",
         text: $newDescription
         )
-          Button {
-              rModel.businessUpdate(email: self.bModel.bpost.business.email ?? "", business_key: self.bModel.bpost.business.business_key ?? "", business_name: self.bModel.bpost.business.business_name ?? "", business_addr: self.bModel.bpost.business.business_addr ?? "", business_description: newDescription, token: AuthService.current.token ?? "")
-            //refresh page here
-            bModel.refreshModel()
-          } label: {
-              Text("Press Me")
-                  .padding(20)
-          }
-          .contentShape(Rectangle())
+      .onSubmit {
+        rModel.businessUpdate(email: bModel.bpost.business.email, password: bModel.bpost.business.password, business_key: bModel.bpost.business.business_key, business_name: bModel.bpost.business.business_name, business_addr: bModel.bpost.business.business_addr, business_description: newDescription, token: self.description, AuthService.current.token ?? "")
+        //refresh page here
+        bModel.refreshModel()
+      }
     }
   }
 }
