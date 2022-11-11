@@ -65,8 +65,11 @@ struct LoginView: View {
                     profile(model: UserProfileModel(email:self.email)).tabItem {
                         Label("Profile", systemImage: "person.circle.fill")
                     }
+                    ActivismView().tabItem {
+                        Label("Activism", systemImage: "person.circle.fill")
+                    }
           
-                            }
+                }
                 
         //SearchView(model: .init())s
       } label: { 
