@@ -24,6 +24,7 @@ var email: String
         Spacer()
       }
       .padding()
+        Text(String(model.ownerDescription))
       HStack(spacing: 4) {
         if let rating = model.rating {
         VStack(alignment: .leading) {

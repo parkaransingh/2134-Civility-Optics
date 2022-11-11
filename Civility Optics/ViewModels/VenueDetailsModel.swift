@@ -25,6 +25,18 @@ class VenueDetailsModel: ObservableObject {
     getDetails()
     getReviews()
   }
+    private func getDescription() {
+        NetworkingService.getDescription(placeID: placeID){ ownerDesc in
+        if let desc = ownerDesc {
+          DispatchQueue.main.async {
+              
+              self.ownerDescription = String(desc)
+              print("works")
+          }
+        }
+      }
+    }
+    
   
   private func getRating() {
     NetworkingService.getRating(placeID: placeID) { rating in
@@ -35,6 +47,7 @@ class VenueDetailsModel: ObservableObject {
       }
     }
   }
+    
   
   private func getReviews() {
     NetworkingService.getReviews(placeID: placeID) { results in
@@ -63,7 +76,7 @@ class VenueDetailsModel: ObservableObject {
       }
     }
   }
-  
+    @Published var ownerDescription: String = ""
   @Published var rating: Double? = nil
   @Published var results: ReviewsResult = []
   @Published var details: PlaceDetailsResult.Place? = nil

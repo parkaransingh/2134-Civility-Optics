@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BusinessPreferences: View {
-    @ObservedObject var bModel: BusinessProfileModel = BusinessProfileModel(email: "")
+    @ObservedObject var bModel: BusinessProfileModel
     //var email: String
     //var bModel = BusinessProfileModel(email: email??, "")
     var rModel = RegisterViewModel()
@@ -33,6 +33,8 @@ struct BusinessPreferences: View {
               )
               
               Button {
+                  print(newDescription)
+                  
                   rModel.businessUpdate(email: bModel.bpost.business.email ?? "", business_key: bModel.bpost.business.business_key ?? "", business_name: bModel.bpost.business.business_name ?? "", business_addr: bModel.bpost.business.business_addr ?? "", business_description: newDescription ?? "", token: AuthService.current.token ?? "")
                   //refresh page here
                   bModel.refreshModel()
