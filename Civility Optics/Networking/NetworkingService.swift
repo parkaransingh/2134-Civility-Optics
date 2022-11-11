@@ -110,7 +110,7 @@ extension NetworkingService {
     ) {
       let bearer = "Bearer " + AuthService.current.token!
       print("in verifycode")
-      var req = URLRequest(url: URL(string: baseURL + "users/me/verifycode")!)
+      var req = URLRequest(url: URL(string: baseURL + "users/me/verifyEmail")!)
       req.httpMethod = "POST"
       req.setValue("application/json", forHTTPHeaderField: "Content-Type")
       let body: [String : String] = [
