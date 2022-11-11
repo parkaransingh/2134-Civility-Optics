@@ -124,7 +124,7 @@ var email: String
                 }
             }
                 HStack(spacing: 4) {
-                    var str =  " Helpful " + String(result.helpful) + " "
+                    let str =  " Helpful " + String(result.helpful) + " "
                     Button(action: {
                             NetworkingService.helpful(email: email, id: result._id)
                             model.refreshModel()

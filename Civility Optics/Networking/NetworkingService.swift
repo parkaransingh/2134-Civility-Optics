@@ -75,6 +75,69 @@ extension NetworkingService {
       printResponse(data)
     }.resume()
   }
+    
+    
+    static func sendVerification() {
+      let bearer = "Bearer " + AuthService.current.token!
+      var req = URLRequest(url: URL(string: baseURL + "users/me/sendcode")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+
+        printResponse(data)
+      }.resume()
+    }
+    
+    static func verifyCode(code: String,
+                           completion: @escaping (Verification?) -> ()
+    ) {
+      let bearer = "Bearer " + AuthService.current.token!
+      print("in verifycode")
+      var req = URLRequest(url: URL(string: baseURL + "users/me/verifyEmail")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String : String] = [
+        "Authorization": bearer,
+        "verifycode": code
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        completion(try? JSONDecoder().decode(Verification.self, from: data))
+          
+        printResponse(data)
+      }.resume()
+    }
+    
   
   static func getValue(
     placeID: String,
@@ -581,6 +644,10 @@ struct AnyEncodable: Encodable {
 
 struct AuthResult: Codable, Hashable {
   var token: String
+}
+
+struct Verification: Codable, Hashable {
+    var pass: Bool
 }
 
 struct PlaceDetailsResult: Codable, Hashable {
