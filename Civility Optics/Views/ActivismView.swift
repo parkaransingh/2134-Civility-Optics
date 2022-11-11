@@ -17,7 +17,7 @@ struct ActivismView: View {
         ScrollView {
             LazyVGrid(columns: columns2, spacing: 2){
                 ForEach(self.myData, id: \.self){ data in
-                    NavigationLink(destination: Text("Second View"), isActive: $move) { EmptyView() }
+                    NavigationLink(destination: ActivismDetailView(), isActive: $move) { EmptyView() }
                         Button(action: {
                             move = true
                             
