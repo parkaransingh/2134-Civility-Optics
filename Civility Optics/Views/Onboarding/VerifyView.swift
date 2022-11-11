@@ -25,6 +25,7 @@ struct VerifyView: View {
                     TextField("Verification Code", text: $code)
                         .foregroundColor(.stone)
                         .keyboardType(.alphabet)
+                        .autocapitalization(.none)
                     Spacer()
                 }
                 .padding(.horizontal)
