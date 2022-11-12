@@ -24,14 +24,13 @@ class VenueDetailsModel: ObservableObject {
     getRating()
     getDetails()
     getReviews()
+    getDescription()
   }
     private func getDescription() {
         NetworkingService.getDescription(placeID: placeID){ ownerDesc in
-        if let desc = ownerDesc {
+        if let ownerDesc = ownerDesc {
           DispatchQueue.main.async {
-              
-              self.ownerDescription = String(desc)
-              print("works")
+              self.ownerDescription = ownerDesc.business.business_description!
           }
         }
       }

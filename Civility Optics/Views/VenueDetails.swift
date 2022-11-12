@@ -163,6 +163,5 @@ struct CustomButtonStyle : ButtonStyle {
     var isSelected: Bool
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.background(configuration.isPressed ? Color.blueDianne : Color.gold)
-            //Could also modify style based on isSelected
     }
 }

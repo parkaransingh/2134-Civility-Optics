@@ -110,7 +110,7 @@ extension NetworkingService {
     
     static func getDescription(
         placeID: String,
-        completion: @escaping (String?) -> ()
+        completion: @escaping (bPost?) -> ()
       ) {
 
         var req = URLRequest(url: URL(string: baseURL + "businesses/getDescription")!)
@@ -134,10 +134,18 @@ extension NetworkingService {
           guard checkStatus(res) else {
             return
           }
-
-          let result = try? JSONDecoder().decode([business_description].self, from: data)
-            completion(result?.first?.business_description)
-        }.resume()
+        printResponse(data)
+        let decoder = JSONDecoder()
+        var bpost: bPost? = nil
+        do {
+            bpost = try decoder.decode(bPost.self, from: data)
+        }
+        catch {
+            print(error)
+        }
+            
+        completion(bpost)
+    }.resume()
       }
 
 
