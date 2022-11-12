@@ -107,6 +107,48 @@ extension NetworkingService {
       completion(result?.first?.avg_rating)
     }.resume()
   }
+    
+    static func getDescription(
+        placeID: String,
+        completion: @escaping (bPost?) -> ()
+      ) {
+
+        var req = URLRequest(url: URL(string: baseURL + "businesses/getDescription")!)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String: String] = [
+          "business_key": placeID
+        ]
+        req.httpBody = try? JSONEncoder().encode(body)
+
+        URLSession.shared.dataTask(with: req) { data, res, error in
+          guard
+            let data = data,
+            let res = res as? HTTPURLResponse,
+            error == nil
+          else {
+            print("Error", error ?? "Unknown error")
+            return
+          }
+
+          guard checkStatus(res) else {
+            return
+          }
+        printResponse(data)
+        let decoder = JSONDecoder()
+        var bpost: bPost? = nil
+        do {
+            bpost = try decoder.decode(bPost.self, from: data)
+        }
+        catch {
+            print(error)
+        }
+            
+        completion(bpost)
+    }.resume()
+      }
+
+
   
   static func searchResults(
     query: String, 
@@ -342,15 +384,19 @@ extension NetworkingService {
       completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
-
+    
+    // add function that reaches that Con find business key in node
+    // before you do that add a rout in the backend that reaches that function! 
+    static func getDescription(placeID: String) {
+        
+    }
   static func businessUpdate(
     email: String,
     business_key: String,
     business_name: String,
     business_addr: String,
     business_description: String,
-    token: String,
-    completion: @escaping (AuthResult?) -> ()
+    token: String
   ) {
     let bearer = "Bearer " + AuthService.current.token!
     var req = URLRequest(url: URL(string: baseURL + "businesses/update")!) //was businesses by itself before
@@ -367,6 +413,8 @@ extension NetworkingService {
     ]
     
     req.httpBody = try? JSONEncoder().encode(body)
+      
+      
     
     URLSession.shared.dataTask(with: req) { data, res, error in
       guard
@@ -384,7 +432,6 @@ extension NetworkingService {
       
       printResponse(data)
       
-      completion(try? JSONDecoder().decode(AuthResult.self, from: data))
     }.resume()
   }
   
@@ -757,6 +804,10 @@ struct RatingResult: Codable, Hashable {
   
   var avg_rating: Double
   
+}
+
+struct business_description: Codable, Hashable {
+    var business_description: String
 }
 
 struct UserDetail: Codable, Hashable {

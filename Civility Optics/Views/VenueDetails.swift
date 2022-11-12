@@ -19,7 +19,21 @@ var email: String
         VStack(alignment: .leading) {
           Text(model.description)
             .font(.headline)
-            .foregroundColor(.pale)
+            .foregroundColor(.stone)
+        }
+        Spacer()
+      }
+      .padding()
+      //Text("Description:")
+      //foregroundColor(.stone)
+      //.multilineTextAlignment(.leading)
+      HStack {
+        VStack(alignment: .leading) {
+          Text("Description: ")
+            .foregroundColor(.stone)
+          Text(String(model.ownerDescription))
+            //.font(.headline)
+            .foregroundColor(.stone)
         }
         Spacer()
       }
@@ -124,7 +138,7 @@ var email: String
                 }
             }
                 HStack(spacing: 4) {
-                    var str =  " Helpful " + String(result.helpful) + " "
+                    let str =  " Helpful " + String(result.helpful) + " "
                     Button(action: {
                             NetworkingService.helpful(email: email, id: result._id)
                             model.refreshModel()
@@ -162,6 +176,5 @@ struct CustomButtonStyle : ButtonStyle {
     var isSelected: Bool
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.background(configuration.isPressed ? Color.blueDianne : Color.gold)
-            //Could also modify style based on isSelected
     }
 }

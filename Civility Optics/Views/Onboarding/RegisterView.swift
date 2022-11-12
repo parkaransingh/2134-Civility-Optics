@@ -25,9 +25,9 @@ struct RegisterView: View {
     @State private var age: DateComponents? = DateComponents()
     @State private var ageInt: Int = 0
     @State var accountType = ""
-    @State var business_name = ""
-    @State var business_key = ""
-    @State var business_addr = ""
+//    @State var business_name = ""
+//    @State var business_key = "12345678"
+//    @State var business_addr = ""
     
     var body: some View {
         ScrollView() {
@@ -152,60 +152,41 @@ struct RegisterView: View {
                         .frame(height: 40)
                     }
                 } else if self.accountType == "Business" {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Business Name")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                TextField("Business Name", text: $business_name)
-                                    .foregroundColor(.stone)
-                                    .keyboardType(.alphabet)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                    }
+//                    VStack(alignment: .leading, spacing: 4) {
+//                        Text("Business Name")
+//                            .foregroundColor(.pale)
+//                            .fontWeight(.semibold)
+//                        ZStack {
+//                            RoundedRectangle(cornerRadius: 12)
+//                                .foregroundColor(.pale)
+//                            HStack {
+//                                TextField("Business Name", text: $business_name)
+//                                    .foregroundColor(.stone)
+//                                    .keyboardType(.alphabet)
+//                                Spacer()
+//                            }
+//                            .padding(.horizontal, 14)
+//                        }
+//                        .frame(height: 40)
+//                    }
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Business Key")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                TextField("Business Key", text: $business_key)
-                                    .foregroundColor(.stone)
-                                    .keyboardType(.alphabet)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                        
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Business Address")
-                            .foregroundColor(.pale)
-                            .fontWeight(.semibold)
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 12)
-                                .foregroundColor(.pale)
-                            HStack {
-                                TextField("Business Address", text: $business_addr)
-                                    .foregroundColor(.stone)
-                                    .keyboardType(.alphabet)
-                                Spacer()
-                            }
-                            .padding(.horizontal, 14)
-                        }
-                        .frame(height: 40)
-                    }
+//                    VStack(alignment: .leading, spacing: 4) {
+//                        Text("Business Address")
+//                            .foregroundColor(.pale)
+//                            .fontWeight(.semibold)
+//                        ZStack {
+//                            RoundedRectangle(cornerRadius: 12)
+//                                .foregroundColor(.pale)
+//                            HStack {
+//                                TextField("Business Address", text: $business_addr)
+//                                    .foregroundColor(.stone)
+//                                    .keyboardType(.alphabet)
+//                                Spacer()
+//                            }
+//                            .padding(.horizontal, 14)
+//                        }
+//                        .frame(height: 40)
+//                    }
                 }
 
               if self.accountType == "Reviewer" || self.accountType == "" {
@@ -302,16 +283,23 @@ struct RegisterView: View {
                 Spacer()
                 
                 NavigationLink(tag: true, selection: $didCreateAccount) {
-                      //SearchView(model: .init())
-                    TabView {
+                      //if business account go to link business view page
+
+                     if(self.accountType == "Business") {
+                         LinkBusiness(model: .init(), userModel: BusinessProfileModel(email: self.email)).tabItem {
+                            Label("Search Places", systemImage: "magnifyingglass")
+                        }
+                     } else {
+                         TabView {
                         SearchView(model: .init(), email: email).tabItem {
                             Label("Search Places", systemImage: "magnifyingglass")
                         }
                         profile(model: UserProfileModel(email: self.email), bModel: BusinessProfileModel(email: ""), accountType: accountType).tabItem {
                             Label("Profile", systemImage: "person.circle.fill")
                         }
-                        
                     }
+                     }
+
                     
                 } label: {
                     EmptyView()
@@ -322,19 +310,23 @@ struct RegisterView: View {
                     if(ageInt >= 13 && self.accountType == "Reviewer") {
                         model.register(email: email, password: password, name: name, race: race, disability: disability, gender: gender)
                     } else if(self.accountType == "Business") {
-                        model.businessRegister(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr)
+                        model.businessRegister(email: email, password: password, business_key: "", business_name: "", business_addr: "")
                     }
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.velvet)
-                        .overlay(Text("Create Account").foregroundColor(.white))
+                            .overlay(Text("Create Account").foregroundColor(.white))
                         .frame(height: 60)
                     
                 }
             }
         }
         .padding()
+
+       
         .navigationTitle("Create an Account")
+        
+        
     }
     
     func chooseRace(myRace: String) {
