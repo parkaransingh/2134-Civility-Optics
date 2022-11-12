@@ -137,7 +137,70 @@ extension NetworkingService {
         printResponse(data)
       }.resume()
     }
+  
+  static func sendForgotPasswordCode(
+    email: String
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "users/sendPasswordCode")!)
+    req.httpMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let body: [String : String] = [
+      "email": email
+    ]
+    req.httpBody = try? JSONEncoder().encode(body)
     
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+        
+      printResponse(data)
+    }.resume()
+  }
+
+  static func updateForgottenPassword(
+    email: String,
+    code: String,
+    password: String,
+    completion: @escaping (Verification?) -> ()
+  ) {
+    var req = URLRequest(url: URL(string: baseURL + "users/changeForgottenPassword")!)
+    req.httpMethod = "POST"
+    req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    let body: [String : String] = [
+      "email": email,
+      "verifycode": code,
+      "newPassword": password
+    ]
+    req.httpBody = try? JSONEncoder().encode(body)
+    
+    URLSession.shared.dataTask(with: req) { data, res, error in
+      guard
+        let data = data,
+        let res = res as? HTTPURLResponse,
+        error == nil
+      else {
+        print("Error", error ?? "Unknown error")
+        return
+      }
+      
+      guard checkStatus(res) else {
+        return
+      }
+      completion(try? JSONDecoder().decode(Verification.self, from: data))
+        
+      printResponse(data)
+    }.resume()
+  }
   
   static func getValue(
     placeID: String,
