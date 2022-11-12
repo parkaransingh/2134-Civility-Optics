@@ -99,7 +99,6 @@ var email: String
                     // Create Date Formatter
                     Text("Rating: ")
                         .bold()
-//                        .multilineTextAlignment(.leading)
                     Text(String(result.value)).foregroundColor(.gold)
                     Spacer()
                 }

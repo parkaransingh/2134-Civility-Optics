@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		80046C1A2918754600AE02FA /* VerifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80046C192918754600AE02FA /* VerifyView.swift */; };
+		8079D08E291FFB1D00CA803C /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8079D08D291FFB1D00CA803C /* ForgotPasswordView.swift */; };
 		808941E628D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
 		808941E728D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
 		808941E828D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
@@ -69,6 +70,7 @@
 
 /* Begin PBXFileReference section */
 		80046C192918754600AE02FA /* VerifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyView.swift; sourceTree = "<group>"; };
+		8079D08D291FFB1D00CA803C /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		808941E528D2A265003ECBCF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		80AC89FC28032A6E00F68D59 /* profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 		80B5D17F28CCF94300379E26 /* FistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FistsView.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				F9B06B8B275C1B440095EEC9 /* WelcomeView.swift */,
+				8079D08D291FFB1D00CA803C /* ForgotPasswordView.swift */,
 				F9B06B8F275C20350095EEC9 /* RegisterView.swift */,
 				80046C192918754600AE02FA /* VerifyView.swift */,
 				F9B06B95275C27FD0095EEC9 /* LoginView.swift */,
@@ -407,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8079D08E291FFB1D00CA803C /* ForgotPasswordView.swift in Sources */,
 				F9168C8D26E43DE20028E469 /* RateViewModel.swift in Sources */,
 				F94661AD262B576F006078DB /* RateView.swift in Sources */,
 				F9B06B8E275C1D230095EEC9 /* Color.swift in Sources */,

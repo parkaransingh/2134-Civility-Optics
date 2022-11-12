@@ -170,7 +170,8 @@ extension NetworkingService {
   static func updateForgottenPassword(
     email: String,
     code: String,
-    password: String
+    password: String,
+    completion: @escaping (Verification?) -> ()
   ) {
     var req = URLRequest(url: URL(string: baseURL + "users/changeForgottenPassword")!)
     req.httpMethod = "POST"

@@ -28,11 +28,11 @@ func verifyCode(code: String) {
   }
 
 func forgotPassword(email: String) {
-  NetworkingService.sendForgotPasswordCode(email);
+    NetworkingService.sendForgotPasswordCode(email: email)
 }
 
 func updateForgottenPassword(email: String, code: String, newPassword: String) {
-    NetworkingService.updateForgottenPassword(email: email, code: code, newPassword: newPassword) {result in
+    NetworkingService.updateForgottenPassword(email: email, code: code, password: newPassword) {result in
         DispatchQueue.main.async {
             self.verified = result?.pass
         }
