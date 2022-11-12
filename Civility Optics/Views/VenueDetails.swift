@@ -17,9 +17,11 @@ var email: String
     VStack {
       HStack {
         VStack(alignment: .leading) {
+          Text("Description:")
+          .foregroundColor(.stone)
           Text(model.description)
             .font(.headline)
-            .foregroundColor(.pale)
+            .foregroundColor(.stone)
         }
         Spacer()
       }
