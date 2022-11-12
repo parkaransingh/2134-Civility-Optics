@@ -9,15 +9,11 @@ import SwiftUI
 
 struct BusinessPreferences: View {
     @ObservedObject var bModel: BusinessProfileModel
-    //var email: String
-    //var bModel = BusinessProfileModel(email: email??, "")
     var rModel = RegisterViewModel()
-    //var model = VenueDetailsModel(placeID: bModel.bpost.business.business_key! ?? <#default value#>! ?? <#default value#>! ?? <#default value#>! ?? <#default value#>!!, description: bModel.bpost.business.business_description ?? <#default value#>)
     @State var newDescription = ""
 
     var body: some View {
       VStack(alignment: .leading, spacing: 4) {
-        //VenueDetails(model: .init(placeID: bModel.bpost.business.business_key, description: bModel.bpost.business.business_description), email: self.email)
           let s1 = "Business Name: " + (bModel.bpost.business.business_name ?? "")
           let s2 = "Business Address: " + (bModel.bpost.business.business_addr ?? "")
           let s3 = "Business Description: " + (bModel.bpost.business.business_description ?? "")
@@ -35,7 +31,6 @@ struct BusinessPreferences: View {
                       .background(Rectangle().fill(Color.red).shadow(radius: 6))
                       .scaledToFit()
               }
-              //Spacer()
               HStack{
                   Text(s2)
                       .font(.custom(
@@ -48,7 +43,6 @@ struct BusinessPreferences: View {
                       .background(Rectangle().fill(Color.blue).shadow(radius: 6))
                       .scaledToFit()
               }
-              //Spacer()
               HStack{
                   Text(s3)
                       .font(.custom(
@@ -71,7 +65,6 @@ struct BusinessPreferences: View {
                       print(newDescription)
                       
                       rModel.businessUpdate(email: bModel.bpost.business.email ?? "", business_key: bModel.bpost.business.business_key ?? "", business_name: bModel.bpost.business.business_name ?? "", business_addr: bModel.bpost.business.business_addr ?? "", business_description: newDescription ?? "", token: AuthService.current.token ?? "")
-                      //refresh page here
                       bModel.refreshModel()
                   } label: {
                       RoundedRectangle(cornerRadius: 20)
