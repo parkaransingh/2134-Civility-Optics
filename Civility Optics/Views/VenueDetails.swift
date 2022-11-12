@@ -17,8 +17,6 @@ var email: String
     VStack {
       HStack {
         VStack(alignment: .leading) {
-          //Text("Description:")
-          //.foregroundColor(.stone)
           Text(model.description)
             .font(.headline)
             .foregroundColor(.stone)
@@ -29,8 +27,17 @@ var email: String
       //Text("Description:")
       //foregroundColor(.stone)
       //.multilineTextAlignment(.leading)
-      Text(String(model.ownerDescription))
-      .foregroundColor(.stone)
+      HStack {
+        VStack(alignment: .leading) {
+          Text("Description: ")
+            .foregroundColor(.stone)
+          Text(String(model.ownerDescription))
+            //.font(.headline)
+            .foregroundColor(.stone)
+        }
+        Spacer()
+      }
+      .padding()
       HStack(spacing: 4) {
         if let rating = model.rating {
         VStack(alignment: .leading) {
