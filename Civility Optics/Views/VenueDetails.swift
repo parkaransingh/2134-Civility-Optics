@@ -28,7 +28,7 @@ var email: String
       //foregroundColor(.stone)
       //.multilineTextAlignment(.leading)
       HStack {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading) {
           Text("Description: ")
             .foregroundColor(.stone)
           Text(String(model.ownerDescription))
