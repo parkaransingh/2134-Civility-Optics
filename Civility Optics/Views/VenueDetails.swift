@@ -24,7 +24,11 @@ var email: String
         Spacer()
       }
       .padding()
-        Text(String(model.ownerDescription))
+      Text("Description:")
+      foregroundColor(.stone)
+      .multilineTextAlignment(.leading)
+      Text(String(model.ownerDescription))
+      .foregroundColor(.stone)
       HStack(spacing: 4) {
         if let rating = model.rating {
         VStack(alignment: .leading) {
