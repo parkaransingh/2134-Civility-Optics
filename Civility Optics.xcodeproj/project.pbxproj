@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80389FA0291C570C0011368E /* BusinessPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80389F9F291C570C0011368E /* BusinessPreferences.swift */; };
 		808941E628D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
 		808941E728D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
 		808941E828D2A266003ECBCF /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 808941E528D2A265003ECBCF /* .gitignore */; };
@@ -16,6 +17,7 @@
 		E8BC307128E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
 		E8BC307228E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
 		E8BC307328E7651800F4F5F6 /* civility-optics-api in Resources */ = {isa = PBXBuildFile; fileRef = E8BC307028E7651800F4F5F6 /* civility-optics-api */; };
+		E8C74C0A291D77800041E719 /* LinkBusiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C74C09291D77800041E719 /* LinkBusiness.swift */; };
 		E8FBE02429024D1200221F7D /* BusinessProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBE02329024D1200221F7D /* BusinessProfileModel.swift */; };
 		E8FBE02629024D2400221F7D /* BusinessUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */; };
 		F90AF9A42707E90600F5085F /* VenueItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90AF9A32707E90600F5085F /* VenueItem.swift */; };
@@ -69,11 +71,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80389F9F291C570C0011368E /* BusinessPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessPreferences.swift; sourceTree = "<group>"; };
 		808941E528D2A265003ECBCF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		80AC89FC28032A6E00F68D59 /* profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 		80B5D17F28CCF94300379E26 /* FistsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FistsView.swift; sourceTree = "<group>"; };
 		80FFD31C28DF8D230090E5D8 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		E8BC307028E7651800F4F5F6 /* civility-optics-api */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "civility-optics-api"; path = "../civility-optics-api"; sourceTree = "<group>"; };
+		E8C74C09291D77800041E719 /* LinkBusiness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkBusiness.swift; sourceTree = "<group>"; };
 		E8FBE02329024D1200221F7D /* BusinessProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessProfileModel.swift; sourceTree = "<group>"; };
 		E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUpdateView.swift; sourceTree = "<group>"; };
 		F90AF9A32707E90600F5085F /* VenueItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueItem.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 				F9B06B8F275C20350095EEC9 /* RegisterView.swift */,
 				F9B06B95275C27FD0095EEC9 /* LoginView.swift */,
 				E8FBE02529024D2400221F7D /* BusinessUpdateView.swift */,
+				E8C74C09291D77800041E719 /* LinkBusiness.swift */,
+				80389F9F291C570C0011368E /* BusinessPreferences.swift */,
 				80AC89FC28032A6E00F68D59 /* profile.swift */,
 			);
 			path = Onboarding;
@@ -428,6 +434,8 @@
 				F9168C8F26E43E300028E469 /* CategoryMenuModel.swift in Sources */,
 				F9B06B96275C27FD0095EEC9 /* LoginView.swift in Sources */,
 				F90AF9A82707F2C500F5085F /* SearchViewModel.swift in Sources */,
+				80389FA0291C570C0011368E /* BusinessPreferences.swift in Sources */,
+				E8C74C0A291D77800041E719 /* LinkBusiness.swift in Sources */,
 				F9B06B89275C18D10095EEC9 /* VenueDetailsModel.swift in Sources */,
 				F9B06B94275C250A0095EEC9 /* AuthService.swift in Sources */,
 				80AC89FD28032A6E00F68D59 /* profile.swift in Sources */,

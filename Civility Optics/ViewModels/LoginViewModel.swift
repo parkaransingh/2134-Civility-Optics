@@ -17,5 +17,13 @@ class LoginViewModel: ObservableObject {
     }
     }
 
+    func bLogin(email: String, password: String) {
+    NetworkingService.bLogin(email: email, password: password) { result in
+      AuthService.current.token = result?.token
+      DispatchQueue.main.async {
+          self.success = true
+      }
+    }
+    }
 @Published var success: Bool?
 }

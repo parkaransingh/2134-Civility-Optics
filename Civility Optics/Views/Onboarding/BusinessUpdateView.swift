@@ -1,5 +1,5 @@
 //
-//  RegisterView.swift
+//  BusinessUpdateView.swift
 //  Civility Optics
 //
 //  Created by Michael Verges on 12/4/21.
@@ -24,6 +24,7 @@ struct BusinessUpdateView: View {
     @State var business_name = ""
     @State var business_key = ""
     @State var business_addr = ""
+    @State var business_description = ""
     @State var query = ""
     
     var body: some View {
@@ -35,46 +36,11 @@ struct BusinessUpdateView: View {
             VStack(spacing: 2) {
                 Text("")
             }
-            /**
-            HStack {
-            Text("Account Type:").font(.headline)
-                HStack (spacing: 5){
-                RadioButtonField(
-                    id: "Reviewer",
-                    label: "Reviewer",
-                    color:.black,
-                    bgColor: .black,
-                    isMarked: $accountType.wrappedValue == "Reviewer" ? true : false,
-                    callback: { selected in
-                        self.accountType = selected
-                        print("Selected account is: \(selected)")
-                    }
-                )
-                RadioButtonField(
-                    id: "Business",
-                    label: "Business",
-                    color:.black,
-                    bgColor: .black,
-                    isMarked: $accountType.wrappedValue == "Business" ? true : false,
-                    callback: { selected in
-                        self.accountType = selected
-                        print("Selected account is: \(selected)")
-                    }
-                )
-            }
-            }
-            */
-
-       //     if self.accountType == "Reviewer" || self.accountType == "" {
-         //      model = RegisterViewModel()
-           // } else if self.accountType == "Business" {
-             //  model = BusinessRegisterViewModel()
-            //}
+            
             
             VStack(spacing: 2) {
                 Text("")
             }
-
 
             VStack(alignment: .leading, spacing: 7) {
                 Text("Update Email")
@@ -236,7 +202,8 @@ struct BusinessUpdateView: View {
                     didCreateAccount = newValue
                 }
                 Button {
-                    model.businessUpdate(email: email, password: password, business_key: business_key, business_name: business_name, business_addr: business_addr, token: AuthService.current.token ?? "")
+                    //business_description = 
+                    model.businessUpdate(email: email, business_key: business_key, business_name: business_name, business_addr: business_addr, business_description: business_description, token: AuthService.current.token ?? "")
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
                         .foregroundColor(.velvet)
