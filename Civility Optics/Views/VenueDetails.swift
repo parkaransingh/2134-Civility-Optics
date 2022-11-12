@@ -29,11 +29,13 @@ var email: String
       //.multilineTextAlignment(.leading)
       HStack {
         VStack(alignment: .leading) {
-          Text("Description: ")
-            .foregroundColor(.stone)
-          Text(String(model.ownerDescription))
-            //.font(.headline)
-            .foregroundColor(.stone)
+            
+                Text("Message from business: ")
+                    .foregroundColor(.stone)
+                    .font(.headline)
+                Text(String(model.ownerDescription))
+                //.font(.headline)
+                    .foregroundColor(.stone)
         }
         Spacer()
       }
