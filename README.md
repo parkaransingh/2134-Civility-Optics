@@ -21,10 +21,28 @@ William Silva
 
 # Civility Optics iOS Release Notes
 
+## v 1.4.0, build 5
+### Features:
+- Verify Email upon registration (Full Stack implementation)
+- Forgot Password option added to login view
+- Activism Education added to navigation bar
+- Tap on Activism Education page icons to view respective details
+- Business account linking added on business account creation
+- Business account can now edit venue details
+
+### Bug fixes:
+- Mongo Key moved to .env
+
+### Known Issues and Limitations:
+- Date time submitted for reviews still displays wrong.
+- Latency with helpful count (missing model refresh?)
+- Submit single ratings without a review
+- Contradicting tags are able to be picked at the same time
+
 ## v 1.3.0, build 4
 ### Features:
 - Log out/in to multiple accounts on the same device
-- Verify a users email
+- Can verify a user's email
 - Banned users are unable to log in or get authentication
 - Indicate helpful reviews
 - Flag/report a user/review
