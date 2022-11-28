@@ -47,7 +47,41 @@ struct RateView: View {
           CategoryMenu(model: menu).padding()
         }
       }
-      
+      if model.categoryMenus[0].selectedLabels.contains("Treats Gender Equally") 
+      && model.categoryMenus[0].selectedLabels.contains("Unequal Treatment") {
+        model.categoryMenus[0][0].isSelected = false
+        model.categoryMenus[0][2].isSelected = false
+        usermodel.refreshModel()
+      }
+      /**
+      if model.categoryMenus[0].selectedLabels == ["Unequal Treatment", "Treats Gender Equally"]  {
+
+      }
+      if model.categoryMenus[2].selectedLabels == ["Diverse Staff", "Not Diverse Staff"] {
+
+      }
+      if model.categoryMenus[2].selectedLabels == ["Not Diverse Staff", "Diverse Staff"]  {
+
+      }
+      if model.categoryMenus[2].selectedLabels == ["Diverse Patrons", "Not Diverse Patrons"] {
+
+      }
+      if model.categoryMenus[2].selectedLabels == ["Not Diverse Patrons", "Diverse Patrons"]  {
+
+      }
+      if model.categoryMenus[3].selectedLabels == ["Supports LGBTQ+ Community", "Discriminates against LGBTQ+"] {
+
+      }
+      if model.categoryMenus[3].selectedLabels == ["Discriminates against LGBTQ+", "Supports LGBTQ+ Community"]  {
+
+      }
+      if model.categoryMenus[4].selectedLabels == ["Accessible by wheel chair", "Not accessible by wheel chair"] {
+
+      }
+      if model.categoryMenus[4].selectedLabels == ["Not accessible by wheel chair", "Accessible by wheel chair"]  {
+
+      }
+      */
       Text("Comment")
         .font(Font.title2.weight(Font.Weight.medium))
         .padding()
@@ -65,6 +99,7 @@ struct RateView: View {
         let tags = model.categoryMenus.flatMap { menu in
           menu.selectedLabels
         }
+        
         
         if !comment.isEmpty {
             NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
