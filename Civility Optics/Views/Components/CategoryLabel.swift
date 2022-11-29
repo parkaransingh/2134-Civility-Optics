@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryLabel: View {
   
   let text: String
+  let exclusionTag: CategoryLabel
   let onSelect: (Bool) -> ()
   
   @State var isSelected: Bool = false
@@ -22,6 +23,10 @@ struct CategoryLabel: View {
   var body: some View {
     
     Button(action: {
+      if (exclusionTag != nil && exclusionTag.isSelected) {
+        exclusionTag.isSelected.toggle()
+        exclusionTag.onSelect(exclusionTag.isSelected)
+      }
       isSelected.toggle()
       onSelect(isSelected)
     }, label: {
