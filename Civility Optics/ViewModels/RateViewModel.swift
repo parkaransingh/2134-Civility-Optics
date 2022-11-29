@@ -38,5 +38,6 @@ struct RateViewModel {
         "Not accessible by wheel chair",
       ]),
     ]
+    //categoryMenus[0].labels
   }
 }
