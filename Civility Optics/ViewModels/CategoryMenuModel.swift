@@ -21,11 +21,13 @@ class CategoryMenuModel: Hashable {
   
   init(title: String, labels: [String]) {
     self.title = title
-    self.labels = labels.map { ($0, false) }
+    //self.labels = labels.map { ($0, false) }
+    self.labels = labels.map { ($0, false, $0) }
   }
   
   let title: String
-  var labels: [(text: String, isSelected: Bool)]
+  //var labels: [(text: String, isSelected: Bool)]
+  var labels: [(text: String, isSelected: Bool, text2: String)]
   
   func index(of label: String) -> Int {
     return labels.firstIndex { currentLabel in

@@ -37,7 +37,8 @@ struct CategoryMenu: View {
           .font(Font.title.weight(Font.Weight.medium))
           .accentColor(.black)
       }
-      
+
+      //probably gotta do something here to check for which in the model
       if isExpanded {
         WrappingHStack(model.labels, id: \.self) { (label) in
           CategoryLabel(label.text) { isSelected in
@@ -46,9 +47,16 @@ struct CategoryMenu: View {
             ].isSelected = isSelected
           }
           .padding(.vertical, 6)
+          for label in model.labels {
+            if label.isSelected && model.labels[model.index(of: label.text2)].isSelected {
+              label.isSelected = false
+              model.labels[model.index(of: label.text2)].isSelected = false
+              
+            }
+          }
+
         }
       }
-      
     }
     .animation(.default)
   }

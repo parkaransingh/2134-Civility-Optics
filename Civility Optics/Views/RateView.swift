@@ -47,7 +47,6 @@ struct RateView: View {
           CategoryMenu(model: menu).padding()
         }
       }
-      
       Text("Comment")
         .font(Font.title2.weight(Font.Weight.medium))
         .padding()
@@ -65,11 +64,11 @@ struct RateView: View {
         let tags = model.categoryMenus.flatMap { menu in
           menu.selectedLabels
         }
-        
+
         if !comment.isEmpty {
-            NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID, name: self.usermodel.post.name ?? "none", email: self.usermodel.post.email ?? "none")
+            NetworkingService.submitRating(rating, date: date, tag: tags, comment: comment, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
         } else {
-            NetworkingService.submitRating(rating, date: date, tag: tags, id: model.placeID, name: self.usermodel.post.name ?? "none", email: self.usermodel.post.email ?? "none")
+            NetworkingService.submitRating(rating, date: date, tag: tags, id: model.placeID, name: self.usermodel.post.user.name ?? "none", email: self.usermodel.post.user.email ?? "none")
         }
         
         presentation.wrappedValue.dismiss()
