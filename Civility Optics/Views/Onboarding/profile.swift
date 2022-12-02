@@ -113,7 +113,7 @@ struct profile: View {
                         }
                     label: {
                         RoundedRectangle(cornerRadius: 20)
-                            .foregroundColor(.yellow)
+                            .foregroundColor(.gold)
                             .overlay(Text("Logout").foregroundColor(.white))
                         
                     }.frame(height: 40)
@@ -128,7 +128,7 @@ struct profile: View {
                         }
                     label: {
                         RoundedRectangle(cornerRadius: 20)
-                            .foregroundColor(.red)
+                            .foregroundColor(.velvet)
                             .overlay(Text("Logout Out All Devices").foregroundColor(.white))
                         
                     }.frame(height: 40)
@@ -208,7 +208,7 @@ struct profile: View {
                     BusinessPreferences(bModel: self.bModel)
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.velvet)
                         .overlay(Text("Update Preferences").foregroundColor(.white))
                 }
                 .frame(height: 60)
@@ -220,7 +220,7 @@ struct profile: View {
                     BusinessUpdateView(originalEmail: self.bModel.bpost.business.email ?? "None")
                 } label: {
                     RoundedRectangle(cornerRadius: 15)
-                        .foregroundColor(.red)
+                        .foregroundColor(.gold)
                         .overlay(Text("Update Account Details").foregroundColor(.white))
                 }
                 .frame(height: 60)
@@ -231,7 +231,7 @@ struct profile: View {
                     WelcomeView()
                 } label: {
                     RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.blueDianne)
                         .overlay(Text("Logout").foregroundColor(.white))
                 }
                 .frame(height: 60)

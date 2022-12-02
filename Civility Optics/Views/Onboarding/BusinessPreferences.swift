@@ -28,7 +28,7 @@ struct BusinessPreferences: View {
                       .multilineTextAlignment(.center)
                       .padding()
                       .frame(width: 400, height: 200)
-                      .background(Rectangle().fill(Color.red).shadow(radius: 6))
+                      .background(Rectangle().fill(Color.velvet).shadow(radius: 6))
                       .scaledToFit()
               }
               HStack{
@@ -40,7 +40,7 @@ struct BusinessPreferences: View {
                       .multilineTextAlignment(.center)
                       .padding()
                       .frame(width: 400, height: 200)
-                      .background(Rectangle().fill(Color.blue).shadow(radius: 6))
+                      .background(Rectangle().fill(Color.gold).shadow(radius: 6))
                       .scaledToFit()
               }
               HStack{
@@ -52,7 +52,7 @@ struct BusinessPreferences: View {
                       .multilineTextAlignment(.center)
                       .padding()
                       .frame(width: 400, height: 200)
-                      .background(Rectangle().fill(Color.yellow).shadow(radius: 6))
+                      .background(Rectangle().fill(Color.blueDianne).shadow(radius: 6))
                       .scaledToFit()
               }
               Spacer()
