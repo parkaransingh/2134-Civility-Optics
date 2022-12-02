@@ -68,17 +68,23 @@ struct LoginView: View {
       Spacer()
       NavigationLink(tag: true, selection: $didLogin) {
                 TabView {
-                    SearchView(model: .init(), email:self.email).tabItem {
+                    SearchView(model: .init(), email:self.email)
+                  
+                        .tabItem {
                         Label("Search Places", systemImage: "magnifyingglass")
                     }
-                    profile(model: UserProfileModel(email:self.email)).tabItem {
+                    profile(model: UserProfileModel(email:self.email))
+              
+                        .tabItem {
                         Label("Profile", systemImage: "person.circle.fill")
                     }
-                    ActivismView().tabItem {
-                        Label("Activism", systemImage: "person.circle.fill")
+                    ActivismView()
+                        
+                        .tabItem {
+                        Label("Activism", systemImage: "book.circle.fill")
                     }
           
-                }
+                }.navigationBarBackButtonHidden(true)
                 
         //SearchView(model: .init())s
       } label: { 

@@ -50,6 +50,9 @@ struct VerifyView: View {
                     profile(model: UserProfileModel(email: self.email)).tabItem {
                         Label("Profile", systemImage: "person.circle.fill")
                     }
+                    ActivismView().tabItem {
+                        Label("Activism", systemImage: "book.circle.fill")
+                    }
                 }
             } label: {
                 EmptyView()

@@ -666,6 +666,39 @@ extension NetworkingService {
     }
     
     
+   // NetworkingService.getActivism(title: title)
+
+    static func getActivism(
+      title: String,
+      completion: @escaping (PostActivism?) -> ()
+    ) {
+      var req = URLRequest(url: URL(string: baseURL + "activism/get")!)
+      req.httpMethod = "POST"
+      req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      let body: [String: AnyEncodable] = [
+        "title": AnyEncodable(title),
+      ]
+      req.httpBody = try? JSONEncoder().encode(body)
+      
+      URLSession.shared.dataTask(with: req) { data, res, error in
+        guard
+          let data = data,
+          let res = res as? HTTPURLResponse,
+          error == nil
+        else {
+          print("Error", error ?? "Unknown error")
+          return
+        }
+        
+        guard checkStatus(res) else {
+          return
+        }
+        
+        printResponse(data)
+        
+        completion(try? JSONDecoder().decode(PostActivism.self, from: data))
+      }.resume()
+    }
     
     
     
@@ -693,6 +726,17 @@ struct Review: Codable, Hashable {
   var user_name: String
   var flagged: Bool
   var helpful: Int
+}
+
+struct PostActivism: Codable {
+    var activism: ActivismResult
+}
+struct ActivismResult: Codable, Hashable {
+  var title : String
+  var displayTitle: String
+  var description: String
+  var tips: String
+  var resources: String
 }
 
 struct AnyEncodable: Encodable {
