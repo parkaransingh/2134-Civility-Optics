@@ -13,7 +13,7 @@ struct CategoryLabel: View {
   let onSelect: (Bool) -> ()
   
   @State var isSelected: Bool = false
-  @State var exclusionTag: CategoryLabel = nil
+  //@State var exclusionTag: CategoryLabel = nil
   
   init(_ text: String, onSelect: @escaping (Bool) -> () = { _ in }) {
     self.text = text
@@ -22,10 +22,10 @@ struct CategoryLabel: View {
   
   var body: some View {
     Button(action: {
-      if exclusionTag != nil && exclusionTag.isSelected {
-        exclusionTag.isSelected.toggle()
-        exclusionTag.onSelect(exclusionTag.isSelected)
-      }
+      //if exclusionTag != nil && exclusionTag.isSelected {
+      //  exclusionTag.isSelected.toggle()
+      //  exclusionTag.onSelect(exclusionTag.isSelected)
+      //}
       isSelected.toggle()
       onSelect(isSelected)
     }, label: {
