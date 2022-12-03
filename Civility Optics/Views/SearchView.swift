@@ -14,18 +14,34 @@ struct SearchView: View {
   @State var query: String = ""
   
   var body: some View {
+
     results.navigationBarTitle("Civility Optics")
           .navigationBarBackButtonHidden(true)
   }
+    
   var searchfield: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 12)
-        .foregroundColor(.pale)
-      HStack {
-        TextField("Search", text: $query)
-          .foregroundColor(.stone)
-        Spacer()
-      }
+        VStack{
+            
+            Image("civility optics logo")
+                .resizable()
+                .edgesIgnoringSafeArea(.top)
+                .frame(width: 70, height: 50)
+                .padding(.trailing, 1)
+                .padding(.top, 1)
+            Spacer()
+            ZStack{
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
+                    .foregroundColor(.pale)
+                    .frame(height:40)
+                HStack {
+                  TextField(" Search", text: $query)
+                    .foregroundColor(.stone)
+                  Spacer()
+                }
+
+            }
+        }
       .padding(.horizontal, 14)
     }
     .frame(height: 40)

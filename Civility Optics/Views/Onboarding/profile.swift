@@ -17,6 +17,15 @@ struct profile: View {
         if (accountType == "Reviewer" || accountType == "") {
                 VStack {
                         HStack {
+                            Image("civility optics logo")
+                            .resizable()
+                           .edgesIgnoringSafeArea(.top)
+                           .frame(width: 70, height: 50)
+                           .padding(.trailing, 1)
+                           .padding(.top, 1)
+                                  }
+                        
+                        HStack {
                             Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
                             Text(self.model.post.name ?? "None").foregroundColor(.blueDianne)
                                 .font(.largeTitle).fontWeight(.bold)
@@ -150,6 +159,15 @@ struct profile: View {
 //           -----------------------------------------------------------------------------------------_______________________________
         if (accountType == "Business") {
             VStack{
+                HStack {
+                    Image("civility optics logo")
+                    .resizable()
+                   //.edgesIgnoringSafeArea(.top)
+                   .frame(width: 70, height: 45)
+                   .padding(.trailing, 1)
+                   .padding(.top, 1)
+                          }
+                
                 HStack{
                     
                     Text("Welcome, ").foregroundColor(.blueDianne).font(.largeTitle).fontWeight(.bold)
@@ -163,7 +181,6 @@ struct profile: View {
                             .fontWeight(.bold)
                             .italic()
                             .font(.title2)
-                        Spacer()
                         
                     }.padding()
                     

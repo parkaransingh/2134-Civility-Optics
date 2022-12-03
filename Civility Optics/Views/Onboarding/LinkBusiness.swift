@@ -18,7 +18,16 @@ struct LinkBusiness: View {
         // add if condition: only when business is selected then we can go to profile page
         // else return a message: "link your business first!"
         VStack{
-            let str = "Selected business " + business_name
+            HStack{
+                Image("civility optics logo")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.top)
+                    .frame(width: 70, height: 50)
+                    .padding(.trailing, 1)
+                    .padding(.top, 1)
+            }
+            Spacer()
+            let str = "Selected business: " + business_name
             Text(str)
             LinkBusiness
             NavigationLink{
@@ -45,8 +54,9 @@ struct LinkBusiness: View {
         var LinkBusiness: some View {
             VStack(alignment: .leading, spacing: 4) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .foregroundColor(.pale)
+                        .frame(height: 40)
                     HStack {
                         TextField("Search for Business", text: $query)
                         
