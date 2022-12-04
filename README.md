@@ -21,6 +21,33 @@ William Silva
 
 # Civility Optics iOS Release Notes
 
+## v 2.0.0, build 3: 12/4/2022
+### Features
+  - Confirm password entry on registration page 
+  - Profile page with user login information
+  - Lower navigation tab bar
+  - Scrollable list of Past Reviews
+  - Review comments include tag of incivility type and rating
+  - Five Fist Icon for view place average rating
+  - Live cloud MongoDB
+  - Authenticated user actions 
+    - Log-out functionality
+    - User profile and detail retrieval
+  - Email verification and password reset
+  - Report/like functionality for reviews
+  - Education activism page
+  - Business accounts
+    - Link to place through Google Places API
+    - Provide description/message on place profile
+### Bug Fixes
+  - Deprecated authentication procedures updated
+
+### Known Issues and Limitations:
+  - Submitting only a rating for one submission causes future reviews to not show up
+  - Currently able to select polar opposites for tags for a single review
+  - Date-time for submitted reviews submitted as in 1970 (issue isolated to front-end)
+  - Business account functionality limited to branch off of development
+
 ## v 1.1.0, build 2 
 ### Features
   - Confirm password entry on registration page 
